@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useReadContract } from 'wagmi';
 import { NounsAuctionHouseABI } from '../../abi/NounsAuctionHouse';
 import AuctionNavigation from './AuctionNavigation/AuctionNavigation';
-import AuctionInfo from './AuctionInfo';
+import AuctionInfo from './Auctioninfo/AuctionInfo';
 import NounImage from './NounImage';
 
 interface AuctionData {
