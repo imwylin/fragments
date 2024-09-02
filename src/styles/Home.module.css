@@ -1,31 +1,49 @@
 .container {
-  padding: 0 2rem;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #343235;
+}
+
+.header {
+  width: 100%;
+  border-bottom: 1px solid white;
+}
+
+.infographicContainer {
+  width: 100vw;
+  height: calc(100vh - 60px - 80px); /* Adjust based on your Navbar and footer height */
+  overflow: hidden;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .main {
-  min-height: 100vh;
-  padding: 4rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0;
 }
 
 .footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
+  width: 100%;
+  padding: 1rem 0;
+  text-align: center;
   border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
+  color: white;
 }
 
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+.emoji {
+  font-size: 24px;
+  line-height: 1;
+  margin-top: 0.5rem;
 }
 
 .title a {
@@ -40,7 +58,7 @@
 }
 
 .title {
-  margin: 3rem 0;
+  margin: 1.5rem 0 3rem;
   line-height: 1;
   font-size: 2.5rem;
 }
@@ -98,5 +116,13 @@
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+
+  .main {
+    padding: 0;
+  }
+
+  .infographicContainer {
+    height: calc(100vh - 60px - 60px); /* Adjust for smaller footer on mobile */
   }
 }

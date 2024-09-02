@@ -5,20 +5,29 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "@nouns/assets": "^0.8.0",
+    "@nouns/contracts": "^0.3.0",
+    "@nouns/sdk": "^0.4.0",
     "@rainbow-me/rainbowkit": "^2.1.5",
-    "@tanstack/react-query": "^5.51.11",
+    "@tanstack/react-query": "^5.52.1",
+    "i18next": "^23.14.0",
     "next": "^14.2.3",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
+    "react-i18next": "^15.0.1",
     "viem": "2.17.0",
-    "wagmi": "^2.12.0"
+    "wagmi": "^2.12.7"
   },
   "devDependencies": {
     "@types/node": "^18.19.3",
     "@types/react": "^18.3.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.3",
     "typescript": "5.4.2"
   }
 }

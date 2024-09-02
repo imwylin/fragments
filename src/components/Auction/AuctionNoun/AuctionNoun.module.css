@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@400;700&display=swap');
+
+.auctionNounWrapper {
+  font-family: 'Londrina Solid', sans-serif;
+  background-color: #f9f9f9; /* Light background for the auction container */
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto; /* Center the container */
+}
+
+.nounId {
+  font-family: 'Londrina Solid', sans-serif;
+  font-size: 32px; /* Increase the font size */
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 16px 0px; /* Bump to the right */
+}
+
+.noun {
+  text-align: center; /* Center the image */
+  margin-bottom: 16px; /* Space between image and buttons */
+}
+
+.nounImage {
+  max-width: 100%; /* Responsive image */
+  border-radius: 8px; /* Rounded corners for the image */
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  gap: 12px; /* Space between buttons */
+}
+
+.navButton {
+  font-family: 'Londrina Solid', sans-serif;
+  background-color: rgba(136, 128, 128, 0.5);
+  border: none;
+  color: rgb(33, 33, 33);
+  padding: 12px 24px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px; /* Slightly rounded corners */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.navButton:hover {
+  background-color: rgba(136, 128, 128, 0.7);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.searchForm {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px; /* Space between buttons and search bar */
+}
+
+.searchInput {
+  font-family: 'Londrina Solid', sans-serif;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: 2px solid #ccc; /* Light grey border */
+  border-radius: 8px 0 0 8px; /* Rounded corners on left side */
+  outline: none; /* Remove default outline */
+  transition: all 0.3s ease; /* Smooth transition for focus */
+}
+
+.searchInput:focus {
+  border-color: #000000; /* Black border on focus */
+}
+
+.searchButton {
+  font-family: 'Londrina Solid', sans-serif;
+  background-color: rgba(136, 128, 128, 0.5);
+  border: none;
+  color: rgb(33, 33, 33);
+  padding: 10px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 0 8px 8px 0; /* Rounded corners on right side */
+  transition: all 0.3s ease; /* Smooth transition for hover */
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.searchButton:hover {
+  background-color: rgba(136, 128, 128, 0.7);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.loadingGif {
+  width: 100%; 
+  height: auto;
+  max-width: 320px;
+}
+
+.nounContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Adjust as needed */
+  align-items: flex-start; /* Ensure alignment at the top */
+}
+
+.nounImageSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.nounId {
+  margin: 0; /* Ensure no margin above */
+  text-align: center;
+}
+
+.auctionInfoSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: flex-start; /* Align this section with the top of the parent */
+  margin-top: 0; /* Ensure no margin above */
+}
+
+.auctionInfo {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.bidderAddress {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .auctionNounWrapper {
+    padding: 16px;
+  }
+
+  .navButton {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .searchInput, .searchButton {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+  .nounContent {
+    flex-direction: column;
+  }
+  
+  .nounImageSection,
+  .auctionInfoSection {
+    flex-basis: 100%;
+    margin-right: 0;
+  }
+}

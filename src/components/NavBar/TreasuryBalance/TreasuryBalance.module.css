@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;400&display=swap');
+
+.treasuryButton {
+  font-family: 'Londrina Solid', sans-serif;
+    background-color: #fff;
+    border: none;
+    color: 343235;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+  
+  .treasuryButton:hover {
+    background-color: #333333;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  @media (max-width: 600px) {
+    .treasuryButton {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+  }
