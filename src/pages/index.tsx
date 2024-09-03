@@ -21,7 +21,7 @@ const Home: NextPage = () => {
     <div className={styles.pageWrapper} style={{ backgroundColor }}>
       <Navbar />
       <main className={styles.main}>
-      <div className={styles.japaneseNogglesContainer}>
+        <div className={styles.japaneseNogglesContainer}>
           <JapaneseNoggles />
         </div>
         <div className={styles.infographicContainer}>

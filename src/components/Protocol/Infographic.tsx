@@ -401,7 +401,7 @@ const Infographic: NextPage = () => {
               markerEnd="url(#arrowhead)"
             />
             <text x="725" y="280" fill="white" fontSize="14">
-            Auto-Vote
+              Auto-Vote
             </text>
             <path
               d="M320 670 Q 600 850 870 675"

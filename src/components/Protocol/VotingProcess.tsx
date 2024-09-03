@@ -27,13 +27,7 @@ const VotingProcess: React.FC<VotingProcessProps> = () => {
         stroke="white"
         strokeWidth="2"
       />
-      <text
-        x="600"
-        y="900"
-        textAnchor="middle"
-        fill="white"
-        fontSize="14"
-      >
+      <text x="600" y="900" textAnchor="middle" fill="white" fontSize="14">
         Voting Process
       </text>
       {activeSection === 'voting' && (
@@ -47,13 +41,7 @@ const VotingProcess: React.FC<VotingProcessProps> = () => {
             fill="rgba(255,255,255,0.1)"
             stroke="white"
           />
-          <text
-            x="600"
-            y="990"
-            textAnchor="middle"
-            fill="white"
-            fontSize="14"
-          >
+          <text x="600" y="990" textAnchor="middle" fill="white" fontSize="14">
             <tspan x="600" dy="-0.6em">
               Votes rounded down to nearest Million.
             </tspan>
