@@ -178,7 +178,7 @@ const Infographic: NextPage = () => {
               <g className={styles.hoverInfo}>
                 <rect
                   x="475"
-                  y="620"
+                  y="640"
                   width="250"
                   height="80"
                   rx="5"
@@ -187,7 +187,7 @@ const Infographic: NextPage = () => {
                 />
                 <text
                   x="600"
-                  y="640"
+                  y="660"
                   textAnchor="middle"
                   fill="white"
                   fontSize="14"
