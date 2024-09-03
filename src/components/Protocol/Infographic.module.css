@@ -117,3 +117,15 @@
     font-size: 18px;
   }
 }
+
+.svgContainer {
+  max-width: 600px; /* Adjust the max-width as needed */
+  aspect-ratio: 3 / 4; /* Adjust the aspect ratio as needed */
+}
+
+@media (min-width: 1200px) {
+  .svgContainer {
+    max-width: 1200px; /* Adjust the max-width as needed */
+    aspect-ratio: 6 / 7; /* Adjust the aspect ratio as needed */
+  }
+}
