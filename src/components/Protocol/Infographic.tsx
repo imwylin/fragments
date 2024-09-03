@@ -77,7 +77,7 @@ const Infographic: NextPage = () => {
                     Nouns and mint any combination of
                   </tspan>
                   <tspan x="410" dy="1.2em">
-                    Fragment Nouns and $⌐◧-◧ tokens
+                    Fragment Nouns and $⌐◧-◧ tokens.
                   </tspan>
                 </text>
               </g>
@@ -242,13 +242,13 @@ const Infographic: NextPage = () => {
                   fontSize="14"
                 >
                   <tspan x="130" dy="1.2em">
-                    Can be wrapped into Fragments
+                    Can be wrapped into Fragments.
                   </tspan>
                   <tspan x="130" dy="1.2em">
                     1M tokens can be swapped
                   </tspan>
                   <tspan x="130" dy="1.2em">
-                    for any Vaulted Noun
+                    for any Vaulted Noun.
                   </tspan>
                 </text>
               </g>
@@ -285,7 +285,7 @@ const Infographic: NextPage = () => {
                 />
                 <text
                   x="1070"
-                  y="590"
+                  y="575"
                   textAnchor="middle"
                   fill="white"
                   fontSize="14"
@@ -297,10 +297,16 @@ const Infographic: NextPage = () => {
                     Used for fractional voting
                   </tspan>
                   <tspan x="1070" dy="1.2em">
-                    Voting power equals{' '}
+                    Voting power equals
                   </tspan>
                   <tspan x="1070" dy="1.2em">
-                    wrapped token amount
+                    wrapped token amount.
+                  </tspan>
+                  <tspan x="1070" dy="1.2em">
+                    Fragment Nouns can be
+                  </tspan>
+                  <tspan x="1070" dy="1.2em">
+                    merged and unmerged.
                   </tspan>
                 </text>
               </g>
@@ -362,7 +368,7 @@ const Infographic: NextPage = () => {
                     voting data to Vaulted Nouns
                   </tspan>
                   <tspan x="950" dy="1.2em">
-                    when votes reach X Million
+                    when votes reach X Million.
                   </tspan>
                 </text>
               </g>
@@ -413,19 +419,19 @@ const Infographic: NextPage = () => {
                   fontSize="14"
                 >
                   <tspan x="600" dy="-0.6em">
-                    Votes rounded down to nearest Million
+                    Votes rounded down to nearest Million.
                   </tspan>
                   <tspan x="600" dy="1.2em">
-                    Each Million = 1 Vaulted Noun vote
+                    Each Million = 1 Vaulted Noun vote.
                   </tspan>
                   <tspan x="600" dy="1.2em">
                     For, Against, & Abstain votes cast
                   </tspan>
                   <tspan x="600" dy="1.2em">
-                    in real time as they reach 1M
+                    in real time as they reach 1M.
                   </tspan>
                   <tspan x="600" dy="1.2em">
-                    Remaining votes not cast
+                    Remaining votes not cast.
                   </tspan>
                 </text>
               </g>
@@ -469,8 +475,16 @@ const Infographic: NextPage = () => {
               markerEnd="url(#arrowhead)"
               strokeDasharray="5,5"
             />
+            <path
+              d="M870 675 Q 600 850 320 670"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              markerEnd="url(#arrowhead)"
+              strokeDasharray="5,5"
+            />
             <text x="580" y="790" fill="white" fontSize="14">
-              Wrap
+              (Un) Wrap
             </text>
             <path
               d="M490 350 Q 340 390 300 520"
