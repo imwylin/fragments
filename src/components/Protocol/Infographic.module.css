@@ -102,6 +102,20 @@
   pointer-events: none;
 }
 
+.japaneseNogglesContainer {
+  width: 300px; /* Adjust the width as needed */
+  height: 300px; /* Adjust the height as needed */
+  background-color: white; /* Add a background color for visibility */
+}
+
+.infographicContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 0.5rem;

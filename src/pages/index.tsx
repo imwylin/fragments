@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 import type { NextPage } from 'next';
 import Navbar from '../components/NavBar/NavBar';
+import JapaneseNoggles from '../art/japanesenoggles';
 import Infographic from '../components/Protocol/Infographic';
 
 const Home: NextPage = () => {
@@ -20,6 +21,9 @@ const Home: NextPage = () => {
     <div className={styles.pageWrapper} style={{ backgroundColor }}>
       <Navbar />
       <main className={styles.main}>
+      <div className={styles.japaneseNogglesContainer}>
+          <JapaneseNoggles />
+        </div>
         <div className={styles.infographicContainer}>
           <Infographic />
         </div>

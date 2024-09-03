@@ -13,7 +13,7 @@
 
 .infographicContainer {
   width: 100vw;
-  height: calc(100vh);
+  height: auto;
   overflow: hidden;
 }
 
@@ -110,6 +110,17 @@
   margin: 0;
   font-size: 1.2rem;
   line-height: 1.5;
+}
+
+.votingProcessContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.japaneseNogglesContainer {
+  margin-top: 2rem; /* Adjust the value as needed */
 }
 
 @media (max-width: 600px) {

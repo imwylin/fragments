@@ -24,7 +24,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/utils/**/*" // Ensure this line is added to include your local types
-  ],
+, "../Library/Auction/NounImage.tsx"  ],
   "exclude": [
     "node_modules"
   ]
