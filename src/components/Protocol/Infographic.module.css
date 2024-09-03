@@ -20,6 +20,8 @@
   max-width: 1000px;
   margin: 0 auto;
   aspect-ratio: 1200 / 1400;
+  max-height: calc(100vh); /* Adjust based on your Navbar and footer height */
+  overflow: hidden; 
 }
 
 .diagram {

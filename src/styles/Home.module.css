@@ -13,7 +13,7 @@
 
 .infographicContainer {
   width: 100vw;
-  height: calc(100vh - 60px - 80px); /* Adjust based on your Navbar and footer height */
+  height: calc(100vh);
   overflow: hidden;
 }
 
@@ -122,10 +122,4 @@
     padding: 0;
   }
 
-  .infographicContainer {
-    width: 100vw;
-    height: calc(100vh - 140px); /* Adjust based on your Navbar and footer height */
-    overflow: hidden;
-    margin-bottom: 20px; /* Adjust the value as needed */
-  }
 }
