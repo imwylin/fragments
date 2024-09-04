@@ -254,6 +254,63 @@ const Infographic: NextPage = () => {
             )}
           </g>
 
+          {/* Merge Fragments */}
+          <g
+            className={styles.node}
+            onMouseEnter={() => handleHover('fragments')}
+            onMouseLeave={() => handleHover(null)}
+          >
+            <circle
+              cx="1100"
+              cy="600"
+              r="70"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+            />
+            <text x="1100" y="605" textAnchor="middle" fill="white">
+              Fragment Nouns
+            </text>
+            {activeSection === 'fragments' && (
+              <g className={styles.hoverInfo}>
+                <rect
+                  x="910"
+                  y="730"
+                  width="180"
+                  height="120"
+                  rx="5"
+                  fill="rgba(255,255,255,0.1)"
+                  stroke="white"
+                />
+                <text
+                  x="1000"
+                  y="765"
+                  textAnchor="middle"
+                  fill="white"
+                  fontSize="14"
+                >
+                  <tspan x="1000" dy="-0.6em">
+                    Wrapped $⌐◧-◧ tokens
+                  </tspan>
+                  <tspan x="1000" dy="1.2em">
+                    Used for fractional voting
+                  </tspan>
+                  <tspan x="1000" dy="1.2em">
+                    Voting power equals
+                  </tspan>
+                  <tspan x="1000" dy="1.2em">
+                    wrapped token amount.
+                  </tspan>
+                  <tspan x="1000" dy="1.2em">
+                    Fragment Nouns can be
+                  </tspan>
+                  <tspan x="1000" dy="1.2em">
+                    merged and unmerged.
+                  </tspan>
+                </text>
+              </g>
+            )}
+          </g>
           {/* Fragments */}
           <g
             className={styles.node}
@@ -274,8 +331,8 @@ const Infographic: NextPage = () => {
             {activeSection === 'fragments' && (
               <g className={styles.hoverInfo}>
                 <rect
-                  x="980"
-                  y="540"
+                  x="910"
+                  y="730"
                   width="180"
                   height="120"
                   rx="5"
@@ -283,28 +340,28 @@ const Infographic: NextPage = () => {
                   stroke="white"
                 />
                 <text
-                  x="1070"
-                  y="575"
+                  x="1000"
+                  y="765"
                   textAnchor="middle"
                   fill="white"
                   fontSize="14"
                 >
-                  <tspan x="1070" dy="-0.6em">
+                  <tspan x="1000" dy="-0.6em">
                     Wrapped $⌐◧-◧ tokens
                   </tspan>
-                  <tspan x="1070" dy="1.2em">
+                  <tspan x="1000" dy="1.2em">
                     Used for fractional voting
                   </tspan>
-                  <tspan x="1070" dy="1.2em">
+                  <tspan x="1000" dy="1.2em">
                     Voting power equals
                   </tspan>
-                  <tspan x="1070" dy="1.2em">
+                  <tspan x="1000" dy="1.2em">
                     wrapped token amount.
                   </tspan>
-                  <tspan x="1070" dy="1.2em">
+                  <tspan x="1000" dy="1.2em">
                     Fragment Nouns can be
                   </tspan>
-                  <tspan x="1070" dy="1.2em">
+                  <tspan x="1000" dy="1.2em">
                     merged and unmerged.
                   </tspan>
                 </text>
@@ -476,6 +533,32 @@ const Infographic: NextPage = () => {
             />
             <text x="800" y="450" fill="white" fontSize="14">
               Vote
+            </text>
+
+            <path
+              d="M1080 680 Q 1000 740 920 680"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              markerEnd="url(#arrowhead)"
+              strokeDasharray="5,5"
+            />
+            <text x="980" y="680" fill="white" fontSize="14">
+              {' '}
+              Merge
+            </text>
+
+          <path
+              d="M920 520 Q 990 470 1080 520"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              markerEnd="url(#arrowhead)"
+              strokeDasharray="5,5"
+            />
+            <text x="970" y="530" fill="white" fontSize="14">
+              {' '}
+              Unmerge
             </text>
           </g>
 
