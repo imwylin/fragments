@@ -6,6 +6,11 @@
   background-color: #343235;
 }
 
+.pageWrapper {
+  background-color: #343235;
+  padding: 20px;
+}
+
 .header {
   width: 100%;
   border-bottom: 1px solid white;
@@ -24,6 +29,8 @@
 }
 
 .main {
+  background-color: #343235;
+  margin-top: 20px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -36,8 +43,9 @@
   width: 100%;
   padding: 1rem 0;
   text-align: center;
-  border-top: 1px solid #eaeaea;
   color: white;
+  border-top: 1px solid #eaeaea;
+  background-color: #343235;
 }
 
 .emoji {
