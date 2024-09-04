@@ -96,6 +96,28 @@ background-color: #d5d7e1; /* Slightly lighter black on hover */
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
 }
 
+.probeNounsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+  
+.probeNounsLink {
+    color: #343235;
+    text-decoration: none;
+    margin-right: 10px;
+}
+  
+.probeNounsLink:hover {
+    color: #0066cc;
+    text-decoration: underline;
+}
+  
+.probeLogo {
+    height: 20px; /* Adjust the height as needed */
+}
+
 .loadingGif {
 width: 100%;
 height: auto;

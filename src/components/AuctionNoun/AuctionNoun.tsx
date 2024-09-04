@@ -236,6 +236,15 @@ interface PastAuctionData {
     setSearchNounId(e.target.value);
   };
 
+  const ProbeNounsLink = () => (
+    <div className={classes.probeNounsContainer}>
+      <a href="https://probe.wtf" target="_blank" rel="noopener noreferrer" className={classes.probeNounsLink}>
+        Probe Nouns
+      </a>
+      <img src="/probe.png" alt="Probe Logo" className={classes.probeLogo} />
+    </div>
+  );
+
   const renderAuctionInfo = () => {
     if (isAuctionNoun && currentAuctionData && 'amount' in currentAuctionData && 'bidder' in currentAuctionData) {
       return (
@@ -298,6 +307,7 @@ interface PastAuctionData {
             />
             <button type="submit" className={classes.searchButton}>Search</button>
           </form>
+          <ProbeNounsLink />
         </div>
         <div className={classes.auctionInfoSection}>
           {renderAuctionInfo()}
