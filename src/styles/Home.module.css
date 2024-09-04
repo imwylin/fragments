@@ -120,7 +120,8 @@
 }
 
 .japaneseNogglesContainer {
-  margin-top: 2rem; /* Adjust the value as needed */
+  margin-top: 0rem;
+  margin-bottom: 3rem;
 }
 
 @media (max-width: 600px) {

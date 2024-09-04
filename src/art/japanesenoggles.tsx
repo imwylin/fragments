@@ -16,7 +16,7 @@ const JapaneseNoggles: React.FC = () => (
       textAnchor="middle"
       fill="#333333"
     >
-      $⌐◧-◧
+      $⌐◨-◨
     </text>
     <circle cx="270" cy="30" r="5" fill="#ff4444" />
   </svg>
