@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useBlockNumber, useReadContract, useReadContracts } from 'wagmi';
 import { formatEther } from 'viem';
+import { ENSName } from 'react-ens-name';
 import { useNounSeed } from '../../utils/nounToken';
 import { NounsAuctionHouseABI } from '../../abis/NounsAuctionHouse';
 import ProbeNounsLink from './ProbeNounsLink';
@@ -253,8 +254,8 @@ interface PastAuctionData {
       return (
         <div className={classes.auctionInfo}>
           <h2>Current Auction</h2>
-          <p>Current Bid: {formatEther(currentAuctionData.amount)} Ξ</p>
-          <p>Bidder: {currentAuctionData.bidder}</p>
+          <p>High Bid: {formatEther(currentAuctionData.amount)} Ξ</p>
+          <p>Bidder: <ENSName address={currentAuctionData.bidder} /></p>
           <p>Time Left: {timeLeft}</p>
         </div>
       );
@@ -263,7 +264,7 @@ interface PastAuctionData {
         <div className={classes.auctionInfo}>
           <h2>Past Auction</h2>
           <p>Winning Bid: {formatEther(pastAuctionData.amount)} ETH</p>
-          <p>Winner: {pastAuctionData.winner.toString()}</p>
+          <p>Winner: <ENSName address={pastAuctionData.winner.toString()} /></p>
           <p>Auction Ended: {new Date(Number(pastAuctionData.blockTimestamp) * 1000).toLocaleString()}</p>
         </div>
       );

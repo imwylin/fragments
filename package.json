@@ -10,6 +10,7 @@
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "@ensdomains/react-ens-address": "^0.0.31",
     "@nouns/assets": "^0.8.0",
     "@nouns/contracts": "^0.3.0",
     "@nouns/sdk": "^0.4.0",
