@@ -19,11 +19,11 @@ const nounsTokenABI = [
       { name: 'body', type: 'uint48' },
       { name: 'accessory', type: 'uint48' },
       { name: 'head', type: 'uint48' },
-      { name: 'glasses', type: 'uint48' }
+      { name: 'glasses', type: 'uint48' },
     ],
     stateMutability: 'view',
-    type: 'function'
-  }
+    type: 'function',
+  },
 ] as const;
 
 export const useNounSeed = (nounId: bigint) => {

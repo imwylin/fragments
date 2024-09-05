@@ -33,7 +33,11 @@ interface PastAuctionData {
   clientId: bigint;
 }
 
-  const AuctionNoun: React.FC<AuctionNounProps> = ({ onColorExtracted, onNounIdChange, extractedColor }) => {
+const AuctionNoun: React.FC<AuctionNounProps> = ({
+  onColorExtracted,
+  onNounIdChange,
+  extractedColor,
+}) => {
   const [nounId, setNounId] = useState<bigint>(BigInt(0));
   const [svg, setSvg] = useState<string | null>(null);
   const [isAuctionNoun, setIsAuctionNoun] = useState<boolean>(true);
@@ -49,20 +53,32 @@ interface PastAuctionData {
       {
         address: AUCTION_HOUSE_ADDRESS,
         abi: NounsAuctionHouseABI,
-        functionName: 'auction'
-      }
-    ]
+        functionName: 'auction',
+      },
+    ],
   });
-  
+
   const { data: blockNumber } = useBlockNumber();
 
-  const { data: currentAuctionData, error: currentAuctionError, isLoading: isCurrentAuctionLoading } = useReadContract({
+  const {
+    data: currentAuctionData,
+    error: currentAuctionError,
+    isLoading: isCurrentAuctionLoading,
+  } = useReadContract({
     address: AUCTION_HOUSE_ADDRESS,
     abi: NounsAuctionHouseABI,
     functionName: 'auction',
-  }) as { data: AuctionData | undefined, error: Error | null, isLoading: boolean };
-  
-  const { data: pastAuctionData, error: pastAuctionError, isLoading: isPastAuctionLoading } = useReadContract({
+  }) as {
+    data: AuctionData | undefined;
+    error: Error | null;
+    isLoading: boolean;
+  };
+
+  const {
+    data: pastAuctionData,
+    error: pastAuctionError,
+    isLoading: isPastAuctionLoading,
+  } = useReadContract({
     abi: NounsAuctionHouseABI,
     address: AUCTION_HOUSE_ADDRESS,
     functionName: 'getSettlements',
@@ -72,13 +88,17 @@ interface PastAuctionData {
   const seed = useNounSeed(nounId);
 
   const updateTimeLeft = () => {
-    if (isAuctionNoun && currentAuctionData && 'endTime' in currentAuctionData) {
+    if (
+      isAuctionNoun &&
+      currentAuctionData &&
+      'endTime' in currentAuctionData
+    ) {
       const auctionData = currentAuctionData as AuctionData;
       const timer = setInterval(() => {
         const now = Date.now() / 1000;
         const endTime = Number(auctionData.endTime);
         const diff = endTime - now;
-  
+
         if (diff <= 0) {
           setTimeLeft('Auction ended');
           clearInterval(timer);
@@ -89,7 +109,7 @@ interface PastAuctionData {
           setTimeLeft(`${hours}h ${minutes}m ${seconds}s`);
         }
       }, 1000);
-  
+
       return () => clearInterval(timer);
     }
   };
@@ -119,7 +139,12 @@ interface PastAuctionData {
       } else {
         setError('No auction data available');
       }
-    } else if (auctionData && Array.isArray(auctionData) && auctionData[0] && 'error' in auctionData[0]) {
+    } else if (
+      auctionData &&
+      Array.isArray(auctionData) &&
+      auctionData[0] &&
+      'error' in auctionData[0]
+    ) {
       setError(auctionData[0].error?.message || 'An unknown error occurred');
     }
   }, [auctionData, onNounIdChange]);
@@ -134,12 +159,14 @@ interface PastAuctionData {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ seed }),
           });
-      
+
           if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(`Network response was not ok. Status: ${response.status}. Details: ${errorData.error}`);
+            throw new Error(
+              `Network response was not ok. Status: ${response.status}. Details: ${errorData.error}`
+            );
           }
-      
+
           const data = await response.json();
           console.log('Received SVG data:', data);
           setSvg(`data:image/svg+xml;base64,${btoa(data.svg)}`);
@@ -153,7 +180,7 @@ interface PastAuctionData {
           }
         }
       };
-  
+
       loadBuildSVG();
     }
   }, [seed, nounId]);
@@ -170,11 +197,19 @@ interface PastAuctionData {
           canvas.height = img.height;
           context.drawImage(img, 0, 0);
 
-          const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+          const imageData = context.getImageData(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+          );
           if (imageData) {
             const { data } = imageData;
             const length = data.length;
-            let r = 0, g = 0, b = 0, count = 0;
+            let r = 0,
+              g = 0,
+              b = 0,
+              count = 0;
 
             for (let i = 0; i < length; i += 4) {
               r += data[i];
@@ -197,16 +232,16 @@ interface PastAuctionData {
   }, [svg, onColorExtracted]);
 
   useEffect(() => {
-  if (currentAuctionData && isAuctionNoun) {
-    const typedAuctionData = currentAuctionData as AuctionData;
-    setNounId(typedAuctionData.nounId);
-    setAuctionNounId(typedAuctionData.nounId);
-    onNounIdChange(typedAuctionData.nounId);
-  }
-}, [currentAuctionData, isAuctionNoun, onNounIdChange]);
+    if (currentAuctionData && isAuctionNoun) {
+      const typedAuctionData = currentAuctionData as AuctionData;
+      setNounId(typedAuctionData.nounId);
+      setAuctionNounId(typedAuctionData.nounId);
+      onNounIdChange(typedAuctionData.nounId);
+    }
+  }, [currentAuctionData, isAuctionNoun, onNounIdChange]);
 
   const handlePrevious = () => {
-    setNounId(prevId => {
+    setNounId((prevId) => {
       const newId = prevId > BigInt(0) ? prevId - BigInt(1) : BigInt(0);
       onNounIdChange(newId);
       setIsAuctionNoun(false);
@@ -215,7 +250,7 @@ interface PastAuctionData {
   };
 
   const handleNext = () => {
-    setNounId(prevId => {
+    setNounId((prevId) => {
       const newId = prevId + BigInt(1);
       if (newId <= auctionNounId) {
         onNounIdChange(newId);
@@ -257,19 +292,28 @@ interface PastAuctionData {
         <div className={classes.auctionInfo}>
           <h2>Current Auction</h2>
           <p>Time Left: {timeLeft}</p>
-          <p>Bidder: <ENSName address={currentAuctionData.bidder} /></p>
+          <p>
+            Bidder: <ENSName address={currentAuctionData.bidder} />
+          </p>
           <p>High Bid: {formatEther(currentAuctionData.amount)} Ξ</p>
         </div>
       );
     } else if (Array.isArray(pastAuctionData)) {
-      const settlement = pastAuctionData.find(s => s.nounId === nounId);
+      const settlement = pastAuctionData.find((s) => s.nounId === nounId);
       if (settlement) {
         return (
           <div className={classes.auctionInfo}>
             <h2>Past Auction</h2>
             <p>Winning Bid: {formatEther(settlement.amount)} Ξ</p>
-            <p>Winner: <ENSName address={settlement.winner.toString()} /></p>
-            <p>Auction Ended: {new Date(Number(settlement.blockTimestamp) * 1000).toLocaleString()}</p>
+            <p>
+              Winner: <ENSName address={settlement.winner.toString()} />
+            </p>
+            <p>
+              Auction Ended:{' '}
+              {new Date(
+                Number(settlement.blockTimestamp) * 1000
+              ).toLocaleString()}
+            </p>
             <p>Client ID: {settlement.clientId}</p>
           </div>
         );
@@ -277,7 +321,10 @@ interface PastAuctionData {
         return (
           <div className={classes.auctionInfo}>
             <h2>No Past Auction Data</h2>
-            <p>There is no past auction data available for Noun ID {nounId.toString()}.</p>
+            <p>
+              There is no past auction data available for Noun ID{' '}
+              {nounId.toString()}.
+            </p>
           </div>
         );
       }
@@ -286,40 +333,65 @@ interface PastAuctionData {
   };
 
   return (
-    <div className={classes.auctionNounWrapper} style={{ backgroundColor: extractedColor }}>
+    <div
+      className={classes.auctionNounWrapper}
+      style={{ backgroundColor: extractedColor }}
+    >
       <div className={classes.nounContent}>
         <div className={classes.nounImageSection}>
           <div className={classes.nounId}>Noun {nounId.toString()}</div>
           <div className={classes.noun}>
             {!svg ? (
               <div className={classes.loadingContainer}>
-                <img src="/loading.gif" alt="Loading" className={classes.loadingGif} />
+                <img
+                  src="/loading.gif"
+                  alt="Loading"
+                  className={classes.loadingGif}
+                />
               </div>
             ) : (
-              <img 
-                src={svg} 
-                alt={`Noun ${nounId.toString()}`} 
+              <img
+                src={svg}
+                alt={`Noun ${nounId.toString()}`}
                 className={classes.nounImage}
               />
             )}
             <canvas ref={canvasRef} style={{ display: 'none' }} />
           </div>
           <div className={classes.buttonContainer}>
-            <button onClick={handlePrevious} className={classes.navButton} disabled={nounId === BigInt(0)}>&lt;</button>
-            <button onClick={handleNext} className={classes.navButton} disabled={nounId >= auctionNounId}>&gt;</button>
-            <button onClick={handleReset} className={classes.navButton} disabled={isAuctionNoun}>
+            <button
+              onClick={handlePrevious}
+              className={classes.navButton}
+              disabled={nounId === BigInt(0)}
+            >
+              &lt;
+            </button>
+            <button
+              onClick={handleNext}
+              className={classes.navButton}
+              disabled={nounId >= auctionNounId}
+            >
+              &gt;
+            </button>
+            <button
+              onClick={handleReset}
+              className={classes.navButton}
+              disabled={isAuctionNoun}
+            >
               Return to Auction
             </button>
           </div>
           <form onSubmit={handleSearchSubmit} className={classes.searchForm}>
-            <input 
-              type="text" 
-              placeholder="Enter Noun ID" 
-              value={searchNounId} 
-              onChange={handleSearchChange} 
+            <input
+              type="text"
+              placeholder="Enter Noun ID"
+              value={searchNounId}
+              onChange={handleSearchChange}
               className={classes.searchInput}
             />
-            <button type="submit" className={classes.searchButton}>Search</button>
+            <button type="submit" className={classes.searchButton}>
+              Search
+            </button>
           </form>
           <ProbeNounsLink />
         </div>
@@ -331,6 +403,6 @@ interface PastAuctionData {
       {error && <div className={classes.error}>{error}</div>}
     </div>
   );
-}
+};
 
 export default AuctionNoun;

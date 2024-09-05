@@ -19,7 +19,11 @@ const AuctionButton = () => {
   const [bidAmount, setBidAmount] = useState('');
   const [isAuctionSettled, setIsAuctionSettled] = useState(false);
 
-  const { data: auctionData, isError, isLoading } = useReadContract({
+  const {
+    data: auctionData,
+    isError,
+    isLoading,
+  } = useReadContract({
     address: AUCTION_HOUSE_ADDRESS,
     abi: NounsAuctionHouseABI,
     functionName: 'auction',
@@ -90,6 +94,6 @@ const AuctionButton = () => {
       )}
     </div>
   );
-}
+};
 
 export default AuctionButton;

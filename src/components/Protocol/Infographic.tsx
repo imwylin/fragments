@@ -548,7 +548,7 @@ const Infographic: NextPage = () => {
               Merge
             </text>
 
-          <path
+            <path
               d="M920 520 Q 990 470 1080 520"
               fill="none"
               stroke="white"
