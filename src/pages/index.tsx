@@ -37,7 +37,7 @@ const Home: NextPage = () => {
         </div>
       </main>
       <footer className={styles.footer}>
-        <p className={styles.subtitle}>play Nouns</p>
+        <p className={styles.subtitle}>fragments. cc0 no rights reserved</p>
         <p className={styles.emoji}>💎</p>
       </footer>
     </div>

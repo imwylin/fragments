@@ -7,32 +7,139 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.logo {
+  position: relative;
+  width: 20vw;
+  height: 5vw;
+}
+
 .leftSection {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.logo {
+.desktopLinksSection {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+  align-items: center;
+}
+
+.playNounsLink {
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 1rem;
+  font-weight: regular;
+  transition: color 0.2s ease-in-out;
+}
+
+.playNounsLink:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.sandwichMenuContainer {
   position: relative;
-  width: 20vw; /* Adjust as needed */
-  height: 5vw; /* Adjust as needed */
+}
+
+.sandwichMenu {
+  display: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+.sandwichMenu span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin-bottom: 5px;
+}
+
+.sandwichMenu span:last-child {
+  margin-bottom: 0;
+}
+
+.menuDropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.5rem); /* Position the dropdown below the sandwich menu */
+  right: 0; /* Align the top-right corner of the dropdown with the bottom-right corner of the sandwich menu */
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  z-index: 1;
+}
+
+.mobileMenuDropdown {
+  left: auto; /* Reset the left position */
+  right: 0; /* Align the top-right corner of the dropdown with the bottom-right corner of the sandwich menu */
+  transform: none; /* Reset the horizontal centering */
 }
 
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
-    padding: 1rem;
+    align-items: flex-start;
+    padding: 0.5rem;
   }
 
   .leftSection {
     width: 100%;
     justify-content: space-between;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
-  .logo {
-    width: 120px;
-    height: 40px;
+  .desktopLinksSection {
+    display: none;
+  }
+
+  .sandwichMenu {
+    display: block;
+  }
+
+  .menuDropdown {
+    display: block;
+    top: 100%;
+    left: auto;
+    right: 0;
+    transform: none;
+    width: 200px;
+    background-color: #343235;
+    text-align: right;
+    color: #ffffff;
+    border: 1px solid #ffffff; /* Add a border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    z-index: 1;
+  }
+  
+  .menuDropdown .linksSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-bottom: 1px solid #ffffff; /* Add a bottom border */
+    padding-bottom: 0.5rem;
+    margin-bottom: 0rem;
+  }
+  
+  .menuDropdown .playNounsLink {
+    color: inherit;
+    text-decoration: none;
+    font-weight: regular;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .menuDropdown .playNounsLink:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  .menuDropdown .connectButton {
+    border-top: 1px solid #ffffff; /* Add a top border */
+    padding-top: 0.5rem; /* Add some padding above the connect button */
   }
 }
