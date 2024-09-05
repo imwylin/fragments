@@ -29,11 +29,11 @@ const Home: NextPage = () => {
           onNounIdChange={handleNounIdChange}
           extractedColor={extractedColor}
         />
-        <div className={styles.infographicContainer}>
-          <Infographic />
-        </div>
         <div className={styles.japaneseNogglesContainer}>
           <JapaneseNoggles />
+        </div>
+        <div className={styles.infographicContainer}>
+          <Infographic />
         </div>
       </main>
       <footer className={styles.footer}>
