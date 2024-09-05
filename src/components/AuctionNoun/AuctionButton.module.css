@@ -32,6 +32,15 @@
     margin-right: 10px;
   }
 
+  .input {
+    margin-right: 0;
+    margin-bottom: 10px;
+    padding: 8px 16px; /* Reduced padding */
+    width: 200px; /* Reduced width */
+    font-size: 16px; /* Reduced font size */
+  }
+
+
   @media (max-width: 767px) {
     .container {
       flex-direction: column;
