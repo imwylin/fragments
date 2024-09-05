@@ -52,7 +52,7 @@
 
 .playDropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 1.5rem);
   right: 0;
   background-color: #343235;
   border: 1px solid #ffffff;
