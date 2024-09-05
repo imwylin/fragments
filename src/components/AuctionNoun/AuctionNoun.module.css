@@ -60,7 +60,8 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
 .searchForm {
 display: flex;
 justify-content: center;
-margin-top: 16px; /* Space between buttons and search bar */
+margin-top: 16px;
+margin-bottom: 15px;
 }
 
 .searchInput {
