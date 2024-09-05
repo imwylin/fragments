@@ -182,9 +182,14 @@ padding: 8px 12px;
 flex-direction: column;
  }
 
-.nounImageSection,
-.auctionInfoSection {
-flex-basis: 100%;
-margin-right: 0;
- }
+.nounImageSection {
+    flex-basis: 100%;
+    margin-right: 0;
+  }
+
+  .auctionInfoSection {
+    flex-basis: auto; /* Change this line */
+    margin: 0 auto; /* Add this line */
+    max-width: 100%; /* Add this line */
+  }
 }

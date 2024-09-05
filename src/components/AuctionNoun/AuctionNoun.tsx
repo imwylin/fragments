@@ -256,9 +256,9 @@ interface PastAuctionData {
       return (
         <div className={classes.auctionInfo}>
           <h2>Current Auction</h2>
-          <p>High Bid: {formatEther(currentAuctionData.amount)} Ξ</p>
-          <p>Bidder: <ENSName address={currentAuctionData.bidder} /></p>
           <p>Time Left: {timeLeft}</p>
+          <p>Bidder: <ENSName address={currentAuctionData.bidder} /></p>
+          <p>High Bid: {formatEther(currentAuctionData.amount)} Ξ</p>
         </div>
       );
     } else if (Array.isArray(pastAuctionData)) {
