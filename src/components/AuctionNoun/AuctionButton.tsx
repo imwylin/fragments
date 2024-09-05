@@ -80,7 +80,7 @@ const AuctionButton = () => {
             type="text"
             value={bidAmount}
             onChange={(e) => setBidAmount(e.target.value)}
-            placeholder="0.000000000000069420"
+            placeholder="0.000000000000069420Ξ"
             className={classes.input}
           />
           <button type="submit" className={classes.button}>

@@ -267,7 +267,7 @@ interface PastAuctionData {
         return (
           <div className={classes.auctionInfo}>
             <h2>Past Auction</h2>
-            <p>Winning Bid: {formatEther(settlement.amount)} ETH</p>
+            <p>Winning Bid: {formatEther(settlement.amount)} Ξ</p>
             <p>Winner: <ENSName address={settlement.winner.toString()} /></p>
             <p>Auction Ended: {new Date(Number(settlement.blockTimestamp) * 1000).toLocaleString()}</p>
             <p>Client ID: {settlement.clientId}</p>
