@@ -26,9 +26,11 @@ interface AuctionData {
 }
 
 interface PastAuctionData {
+  blockTimestamp: bigint;
   amount: bigint;
   winner: `0x${string}`;
-  blockTimestamp: bigint;
+  nounId: bigint;
+  clientId: bigint;
 }
 
   const AuctionNoun: React.FC<AuctionNounProps> = ({ onColorExtracted, onNounIdChange, extractedColor }) => {
@@ -61,11 +63,11 @@ interface PastAuctionData {
   }) as { data: AuctionData | undefined, error: Error | null, isLoading: boolean };
   
   const { data: pastAuctionData, error: pastAuctionError, isLoading: isPastAuctionLoading } = useReadContract({
-    address: AUCTION_HOUSE_ADDRESS,
     abi: NounsAuctionHouseABI,
+    address: AUCTION_HOUSE_ADDRESS,
     functionName: 'getSettlements',
-    args: [nounId, nounId, false],
-  }) as { data: PastAuctionData | undefined, error: Error | null, isLoading: boolean };
+    args: nounId ? [nounId, nounId + BigInt(1), false] : undefined,
+  });
 
   const seed = useNounSeed(nounId);
 
@@ -259,15 +261,26 @@ interface PastAuctionData {
           <p>Time Left: {timeLeft}</p>
         </div>
       );
-    } else if (pastAuctionData && pastAuctionData.winner) {
-      return (
-        <div className={classes.auctionInfo}>
-          <h2>Past Auction</h2>
-          <p>Winning Bid: {formatEther(pastAuctionData.amount)} ETH</p>
-          <p>Winner: <ENSName address={pastAuctionData.winner.toString()} /></p>
-          <p>Auction Ended: {new Date(Number(pastAuctionData.blockTimestamp) * 1000).toLocaleString()}</p>
-        </div>
-      );
+    } else if (Array.isArray(pastAuctionData)) {
+      const settlement = pastAuctionData.find(s => s.nounId === nounId);
+      if (settlement) {
+        return (
+          <div className={classes.auctionInfo}>
+            <h2>Past Auction</h2>
+            <p>Winning Bid: {formatEther(settlement.amount)} ETH</p>
+            <p>Winner: <ENSName address={settlement.winner.toString()} /></p>
+            <p>Auction Ended: {new Date(Number(settlement.blockTimestamp) * 1000).toLocaleString()}</p>
+            <p>Client ID: {settlement.clientId}</p>
+          </div>
+        );
+      } else {
+        return (
+          <div className={classes.auctionInfo}>
+            <h2>No Past Auction Data</h2>
+            <p>There is no past auction data available for Noun ID {nounId.toString()}.</p>
+          </div>
+        );
+      }
     }
     return null;
   };
