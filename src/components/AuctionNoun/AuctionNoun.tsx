@@ -3,6 +3,8 @@ import { useBlockNumber, useReadContract, useReadContracts } from 'wagmi';
 import { formatEther } from 'viem';
 import { useNounSeed } from '../../utils/nounToken';
 import { NounsAuctionHouseABI } from '../../abis/NounsAuctionHouse';
+import ProbeNounsLink from './ProbeNounsLink';
+import AuctionButton from './AuctionButton';
 import classes from './AuctionNoun.module.css';
 
 const AUCTION_HOUSE_ADDRESS = '0x830BD73E4184ceF73443C15111a1DF14e495C706';
@@ -23,10 +25,10 @@ interface AuctionData {
 }
 
 interface PastAuctionData {
-    amount: bigint;
-    winner: `0x${string}`;
-    blockTimestamp: bigint;
-  }
+  amount: bigint;
+  winner: `0x${string}`;
+  blockTimestamp: bigint;
+}
 
   const AuctionNoun: React.FC<AuctionNounProps> = ({ onColorExtracted, onNounIdChange, extractedColor }) => {
   const [nounId, setNounId] = useState<bigint>(BigInt(0));
@@ -62,9 +64,36 @@ interface PastAuctionData {
     abi: NounsAuctionHouseABI,
     functionName: 'getSettlements',
     args: [nounId, nounId, false],
-  });
+  }) as { data: PastAuctionData | undefined, error: Error | null, isLoading: boolean };
 
   const seed = useNounSeed(nounId);
+
+  const updateTimeLeft = () => {
+    if (isAuctionNoun && currentAuctionData && 'endTime' in currentAuctionData) {
+      const auctionData = currentAuctionData as AuctionData;
+      const timer = setInterval(() => {
+        const now = Date.now() / 1000;
+        const endTime = Number(auctionData.endTime);
+        const diff = endTime - now;
+  
+        if (diff <= 0) {
+          setTimeLeft('Auction ended');
+          clearInterval(timer);
+        } else {
+          const hours = Math.floor(diff / 3600);
+          const minutes = Math.floor((diff % 3600) / 60);
+          const seconds = Math.floor(diff % 60);
+          setTimeLeft(`${hours}h ${minutes}m ${seconds}s`);
+        }
+      }, 1000);
+  
+      return () => clearInterval(timer);
+    }
+  };
+
+  useEffect(() => {
+    updateTimeLeft();
+  }, [isAuctionNoun, currentAuctionData]);
 
   useEffect(() => {
     console.log('Auction Data:', auctionData);
@@ -173,29 +202,6 @@ interface PastAuctionData {
   }
 }, [currentAuctionData, isAuctionNoun, onNounIdChange]);
 
-  useEffect(() => {
-    if (isAuctionNoun && currentAuctionData && 'endTime' in currentAuctionData) {
-      const auctionData = currentAuctionData as AuctionData;
-      const timer = setInterval(() => {
-        const now = Date.now() / 1000;
-        const endTime = Number(auctionData.endTime);
-        const diff = endTime - now;
-  
-        if (diff <= 0) {
-          setTimeLeft('Auction ended');
-          clearInterval(timer);
-        } else {
-          const hours = Math.floor(diff / 3600);
-          const minutes = Math.floor((diff % 3600) / 60);
-          const seconds = Math.floor(diff % 60);
-          setTimeLeft(`${hours}h ${minutes}m ${seconds}s`);
-        }
-      }, 1000);
-  
-      return () => clearInterval(timer);
-  }
-}, [isAuctionNoun, currentAuctionData]);
-
   const handlePrevious = () => {
     setNounId(prevId => {
       const newId = prevId > BigInt(0) ? prevId - BigInt(1) : BigInt(0);
@@ -236,37 +242,31 @@ interface PastAuctionData {
     setSearchNounId(e.target.value);
   };
 
-  const ProbeNounsLink = () => (
-    <div className={classes.probeNounsContainer}>
-      <a href="https://probe.wtf" target="_blank" rel="noopener noreferrer" className={classes.probeNounsLink}>
-        Probe Nouns
-      </a>
-      <img src="/probe.png" alt="Probe Logo" className={classes.probeLogo} />
-    </div>
-  );
-
   const renderAuctionInfo = () => {
-    if (isAuctionNoun && currentAuctionData && 'amount' in currentAuctionData && 'bidder' in currentAuctionData) {
+    if (
+      isAuctionNoun &&
+      currentAuctionData &&
+      typeof currentAuctionData === 'object' &&
+      'amount' in currentAuctionData &&
+      'bidder' in currentAuctionData
+    ) {
       return (
         <div className={classes.auctionInfo}>
           <h2>Current Auction</h2>
-          <p>Current Bid: {formatEther(currentAuctionData.amount)} ETH</p>
+          <p>Current Bid: {formatEther(currentAuctionData.amount)} Ξ</p>
           <p>Bidder: {currentAuctionData.bidder}</p>
           <p>Time Left: {timeLeft}</p>
         </div>
       );
-    } else if (Array.isArray(pastAuctionData) && pastAuctionData.length > 0) {
-      const pastAuction = pastAuctionData[0];
-      if ('amount' in pastAuction && 'winner' in pastAuction && 'blockTimestamp' in pastAuction) {
-        return (
-          <div className={classes.auctionInfo}>
-            <h2>Past Auction</h2>
-            <p>Winning Bid: {formatEther(pastAuction.amount)} ETH</p>
-            <p>Winner: {pastAuction.winner}</p>
-            <p>Auction Ended: {new Date(Number(pastAuction.blockTimestamp) * 1000).toLocaleString()}</p>
-          </div>
-        );
-      }
+    } else if (pastAuctionData && pastAuctionData.winner) {
+      return (
+        <div className={classes.auctionInfo}>
+          <h2>Past Auction</h2>
+          <p>Winning Bid: {formatEther(pastAuctionData.amount)} ETH</p>
+          <p>Winner: {pastAuctionData.winner.toString()}</p>
+          <p>Auction Ended: {new Date(Number(pastAuctionData.blockTimestamp) * 1000).toLocaleString()}</p>
+        </div>
+      );
     }
     return null;
   };
@@ -311,6 +311,7 @@ interface PastAuctionData {
         </div>
         <div className={classes.auctionInfoSection}>
           {renderAuctionInfo()}
+          <AuctionButton />
         </div>
       </div>
       {error && <div className={classes.error}>{error}</div>}
