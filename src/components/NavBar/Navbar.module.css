@@ -53,20 +53,37 @@
   display: none;
   cursor: pointer;
   padding: 0.5rem;
-  background-color: #ffffff;
-  border-radius: 4px;
+  background-color: transparent; /* Change the background color */
+  border: none; /* Remove the border */
 }
 
 .sandwichMenu span {
   display: block;
   width: 25px;
   height: 3px;
-  background-color: #333;
+  background-color: #ffffff; /* Change the line color */
   margin-bottom: 5px;
+  transition: transform 0.3s ease-in-out; /* Add a transition for animation */
 }
 
-.sandwichMenu span:last-child {
-  margin-bottom: 0;
+.sandwichMenu span:nth-child(1) {
+  transform-origin: top left; /* Set the transform origin for the first line */
+}
+
+.sandwichMenu span:nth-child(3) {
+  transform-origin: bottom left; /* Set the transform origin for the third line */
+}
+
+.sandwichMenu.open span:nth-child(1) {
+  transform: rotate(45deg); /* Rotate the first line when the menu is open */
+}
+
+.sandwichMenu.open span:nth-child(2) {
+  opacity: 0; /* Hide the middle line when the menu is open */
+}
+
+.sandwichMenu.open span:nth-child(3) {
+  transform: rotate(-45deg); /* Rotate the third line when the menu is open */
 }
 
 .menuDropdown {
