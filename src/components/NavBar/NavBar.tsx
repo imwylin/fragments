@@ -41,7 +41,7 @@ const Navbar = () => {
                   rel="noopener noreferrer"
                   className={styles.playNounsLink}
                 >
-                  Explore Nouns 🌐
+                  Explore 🌐
                 </Link>
                 <Link
                   href="https://nouns.game/vote"
@@ -49,7 +49,7 @@ const Navbar = () => {
                   rel="noopener noreferrer"
                   className={styles.playNounsLink}
                 >
-                  Play Nouns 🕹️
+                  Play 🕹️
                 </Link>
                 <div className={styles.connectButton}>
                   <ConnectButton />
