@@ -44,13 +44,13 @@ const Navbar = () => {
                   Explore 🌐
                 </Link>
                 <Link
-        href="https://nouns.game/crystal-ball"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.playNounsLink}
-      >
-        Crystal Ball 🔮
-      </Link>
+                  href="https://nouns.game/crystal-ball"
+                   target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.playNounsLink}
+                  >
+                  Crystal Ball 🔮
+                </Link>
                 <Link
                   href="https://nouns.game/vote"
                   target="_blank"
@@ -60,13 +60,13 @@ const Navbar = () => {
                   Play 🕹️
                 </Link>
                 <Link
-        href="https://nouns.game/data"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.playNounsLink}
-      >
-        Data 📊
-      </Link>
+                  href="https://nouns.game/data"
+                 target="_blank"
+                  rel="noopener noreferrer"
+                 className={styles.playNounsLink}
+                >
+                 Data 📊
+                </Link>
                 <div className={styles.connectButton}>
                   <ConnectButton />
                 </div>
