@@ -7,9 +7,14 @@ import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [isPlayMenuOpen, setIsPlayMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
+  };
+
+  const togglePlayMenu = () => {
+    setIsPlayMenuOpen(!isPlayMenuOpen); // Toggle Play dropdown
   };
 
   return (
@@ -45,33 +50,53 @@ const Navbar = () => {
                 >
                   Explore 🌐
                 </Link>
-                <Link
-                  href="https://nouns.game/crystal-ball"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.playNounsLink}
-                >
-                  Crystal Ball 🔮
-                </Link>
-                <Link
-                  href="https://nouns.game/vote"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.playNounsLink}
-                >
-                  Play 🕹️
-                </Link>
-                <Link
-                  href="https://nouns.game/data"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.playNounsLink}
-                >
-                  Data 📊
-                </Link>
-                <div className={styles.connectButton}>
-                  <ConnectButton />
+                <div className={styles.playSubMenu}>
+                  <div
+                    className={styles.playNounsLinkContainer}
+                    onClick={togglePlayMenu}
+                  >
+                    <Link
+                      href="https://nouns.game/vote"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.playNounsLink}
+                      onClick={togglePlayMenu}
+                    >
+                      Play 🕹️
+                    </Link>
+                    {isPlayMenuOpen && (
+                      <div className={styles.subMenuLinks}>
+                        <Link
+                          href="https://nouns.game/crystal-ball"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.subMenuLink}
+                        >
+                          Crystal Ball 🔮
+                        </Link>
+                        <Link
+                          href="https://www.nouns.game/candidates"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.dropdownLink}
+                        >
+                          Candidates 💭
+                        </Link>
+                        <Link
+                          href="https://nouns.game/data"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.subMenuLink}
+                        >
+                          Data 📊
+                        </Link>
+                      </div>
+                    )}
+                  </div>
                 </div>
+              </div>
+              <div className={styles.connectButton}>
+                <ConnectButton />
               </div>
             </div>
           )}
@@ -86,30 +111,48 @@ const Navbar = () => {
         >
           Explore 🌐
         </Link>
-        <Link
-          href="https://nouns.game/crystal-ball"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.playNounsLink}
+        <div
+          className={styles.playMenuContainer}
+          onMouseEnter={() => setIsPlayMenuOpen(true)}
+          onMouseLeave={() => setIsPlayMenuOpen(false)}
         >
-          Crystal Ball 🔮
-        </Link>
-        <Link
-          href="https://nouns.game/vote"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.playNounsLink}
-        >
-          Play 🕹️
-        </Link>
-        <Link
-          href="https://nouns.game/data"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.playNounsLink}
-        >
-          Data 📊
-        </Link>
+          <Link
+            href="https://nouns.game/vote"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.playNounsLink}
+          >
+            Play 🕹️
+          </Link>
+          {isPlayMenuOpen && (
+            <div className={styles.playDropdown}>
+              <Link
+                href="https://nouns.game/crystal-ball"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.dropdownLink}
+              >
+                Crystal Ball 🔮
+              </Link>
+              <Link
+                href="https://www.nouns.game/candidates"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.dropdownLink}
+              >
+                Candidates 💭
+              </Link>
+              <Link
+                href="https://nouns.game/data"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.dropdownLink}
+              >
+                Data 📊
+              </Link>
+            </div>
+          )}
+        </div>
         <div className={styles.connectButton}>
           <ConnectButton />
         </div>

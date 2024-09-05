@@ -45,6 +45,37 @@
   text-decoration: underline;
 }
 
+.playMenuContainer {
+  position: relative;
+  color: #ffffff;
+}
+
+.playDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #343235;
+  border: 1px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 0.5rem;
+  z-index: 1;
+  display: none;
+  text-align: right; /* Hide the dropdown by default */
+  color: #ffffff; /* Change the text color */
+  width: 150px;
+}
+
+.playDropdown .dropdownLink {
+  color: inherit; /* Inherit the text color from the parent */
+  display: block;
+  text-decoration: none;
+  padding: 0.75rem 0.5rem; /* Increase vertical padding */
+}
+
+.dropdownLink:hover {
+  background-color: #4b4949;
+}
+
 .sandwichMenuContainer {
   position: relative;
 }
@@ -103,6 +134,12 @@
   transform: none; /* Reset the horizontal centering */
 }
 
+@media (min-width: 768px) {
+  .playMenuContainer:hover .playDropdown {
+    display: block; /* Show the dropdown on hover for desktop */
+  }
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -154,8 +191,9 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    border-bottom: 1px solid #ffffff; /* Add a bottom border */
-    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ffffff;
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
     margin-bottom: 0rem;
   }
   
@@ -173,7 +211,31 @@
   
   .menuDropdown .connectButton {
     border-top: 1px solid #ffffff; /* Add a top border */
-    padding-top: 0.5rem; /* Add some padding above the connect button */
+    padding-top: 1rem; /* Add some padding above the connect button */
+  }
+
+  .playSubMenu {
+    margin-top: 0.5rem;
+  }
+
+  .subMenuLinks {
+    margin-top: 0.25rem;
+    margin-left: 1rem;
+  }
+
+  .subMenuLink {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 1rem 0;
+  }
+
+  .subMenuLink:hover {
+    text-decoration: underline;
+  }
+
+  .menuDropdown .playSubMenu .playNounsLink {
+    color: inherit; /* Inherit the text color from the parent */
   }
 
 @media (max-width: 480px) {
