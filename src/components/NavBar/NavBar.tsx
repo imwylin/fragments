@@ -39,8 +39,7 @@ const Navbar = () => {
           </div>
           {showMenu && (
             <div
-              className={`${styles.menuDropdown} ${styles.mobileMenuDropdown}`}
-            >
+              className={`${styles.menuDropdown} ${styles.mobileMenuDropdown}`}>
               <div className={styles.linksSection}>
                 <Link
                   href="https://nouns.world/"
@@ -74,14 +73,12 @@ const Navbar = () => {
                         >
                           Crystal Ball 🔮
                         </Link>
-                        <Link
-                          href="https://www.nouns.game/candidates"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.dropdownLink}
-                        >
-                          Candidates 💭
-                        </Link>
+                        <Link href="https://www.nouns.game/candidates" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.dropdownLink}>
+                Candidates 💭
+              </Link>
                         <Link
                           href="https://nouns.game/data"
                           target="_blank"
@@ -111,10 +108,9 @@ const Navbar = () => {
         >
           Explore 🌐
         </Link>
-        <div
-          className={styles.playMenuContainer}
-          onMouseEnter={() => setIsPlayMenuOpen(true)}
-          onMouseLeave={() => setIsPlayMenuOpen(false)}
+        <div className={styles.playMenuContainer} 
+        onMouseEnter={() => setIsPlayMenuOpen(true)}
+        onMouseLeave={() => setIsPlayMenuOpen(false)}
         >
           <Link
             href="https://nouns.game/vote"
@@ -134,12 +130,10 @@ const Navbar = () => {
               >
                 Crystal Ball 🔮
               </Link>
-              <Link
-                href="https://www.nouns.game/candidates"
+              <Link href="https://www.nouns.game/candidates" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.dropdownLink}
-              >
+                className={styles.dropdownLink}>
                 Candidates 💭
               </Link>
               <Link
