@@ -173,7 +173,7 @@
 
   .menuDropdown {
     display: block;
-    top: 100%;
+    top: calc(100% + 1rem);
     left: auto;
     right: 0;
     transform: none;
