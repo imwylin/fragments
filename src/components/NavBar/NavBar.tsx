@@ -21,14 +21,16 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.leftSection}>
         <div className={styles.logo}>
-          <Image
-            src="/logo.png"
-            alt="Your Logo"
-            fill
-            style={{
-              objectFit: 'contain',
-            }}
-          />
+        <Link href="/">
+            <Image
+              src="/logo.png"
+              alt="Your Logo"
+              fill
+              style={{
+                objectFit: 'contain',
+              }}
+            />
+          </Link>
         </div>
         <TreasuryBalance />
         <div className={styles.sandwichMenuContainer}>
@@ -39,8 +41,10 @@ const Navbar = () => {
           </div>
           {showMenu && (
             <div
-              className={`${styles.menuDropdown} ${styles.mobileMenuDropdown}`}>
+              className={`${styles.menuDropdown} ${styles.mobileMenuDropdown}`}
+            >
               <div className={styles.linksSection}>
+                <Link href="/protocol">Protocol 🪙</Link>
                 <Link
                   href="https://nouns.world/"
                   target="_blank"
@@ -73,12 +77,14 @@ const Navbar = () => {
                         >
                           Crystal Ball 🔮
                         </Link>
-                        <Link href="https://www.nouns.game/candidates" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.dropdownLink}>
-                Candidates 💭
-              </Link>
+                        <Link
+                          href="https://www.nouns.game/candidates"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.dropdownLink}
+                        >
+                          Candidates 💭
+                        </Link>
                         <Link
                           href="https://nouns.game/data"
                           target="_blank"
@@ -100,6 +106,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className={styles.desktopLinksSection}>
+        <Link href="/protocol">Protocol 🪙</Link>
         <Link
           href="https://nouns.world/"
           target="_blank"
@@ -108,9 +115,10 @@ const Navbar = () => {
         >
           Explore 🌐
         </Link>
-        <div className={styles.playMenuContainer} 
-        onMouseEnter={() => setIsPlayMenuOpen(true)}
-        onMouseLeave={() => setIsPlayMenuOpen(false)}
+        <div
+          className={styles.playMenuContainer}
+          onMouseEnter={() => setIsPlayMenuOpen(true)}
+          onMouseLeave={() => setIsPlayMenuOpen(false)}
         >
           <Link
             href="https://nouns.game/vote"
@@ -130,10 +138,12 @@ const Navbar = () => {
               >
                 Crystal Ball 🔮
               </Link>
-              <Link href="https://www.nouns.game/candidates" 
+              <Link
+                href="https://www.nouns.game/candidates"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.dropdownLink}>
+                className={styles.dropdownLink}
+              >
                 Candidates 💭
               </Link>
               <Link

@@ -27,6 +27,7 @@
 
 .desktopLinksSection {
   display: flex;
+  color: #ffffff;
   gap: 1rem;
   margin-left: auto;
   align-items: center;

@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/utils/**/*",
+    "src/utils/**/*", "../Library/components/EthereumCasts.tsx",
   ],
   "exclude": [
     "node_modules"

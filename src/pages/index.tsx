@@ -3,8 +3,8 @@ import type { NextPage } from 'next';
 import styles from '../styles/Home.module.css';
 import Navbar from '../components/NavBar/NavBar';
 import AuctionNoun from '../components/AuctionNoun/AuctionNoun';
-import Infographic from '../components/Protocol/Infographic';
 import JapaneseNoggles from '../art/japanesenoggles';
+import NounsTown from '../../../Library/components/Iframes/Iframes';
 
 const Home: NextPage = () => {
   const [backgroundColor, setBackgroundColor] = useState<string>('#343235');
@@ -31,9 +31,6 @@ const Home: NextPage = () => {
         />
         <div className={styles.japaneseNogglesContainer}>
           <JapaneseNoggles />
-        </div>
-        <div className={styles.infographicContainer}>
-          <Infographic />
         </div>
       </main>
       <footer className={styles.footer}>
