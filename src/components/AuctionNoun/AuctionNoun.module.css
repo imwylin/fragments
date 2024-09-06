@@ -2,18 +2,18 @@
 
 .auctionNounWrapper {
 font-family: 'Londrina Solid', sans-serif;
-background-color: #f9f9f9; /* Light background for the auction container */
+background-color: #f9f9f9;
 padding: 24px;
 border-radius: 12px;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 max-width: 1000px;
 width: 100%;
-margin: 0 auto; /* Center the container */
+margin: 0 auto;
 }
 
 .nounId {
 font-family: 'Londrina Solid', sans-serif;
-font-size: 32px; /* Increase the font size */
+font-size: 32px;
 font-weight: 700;
 text-align: center;
 margin: 0 0 16px 0px;
@@ -21,19 +21,19 @@ color: #343235;
 }
 
 .noun {
-text-align: center; /* Center the image */
-margin-bottom: 24px; /* Space between image and buttons */
+text-align: center;
+margin-bottom: 24px;
 }
 
 .nounImage {
-max-width: 100%; /* Responsive image */
-border-radius: 8px; /* Rounded corners for the image */
+max-width: 100%;
+border-radius: 8px;
 }
 
 .buttonContainer {
 display: flex;
-justify-content: center; /* Center buttons horizontally */
-gap: 12px; /* Space between buttons */
+justify-content: center;
+gap: 12px;
 }
 
 .navButton {
@@ -53,8 +53,8 @@ letter-spacing: 0.5px;
 }
 
 .navButton:hover {
-background-color: #d5d7e1; /* Slightly lighter black on hover */
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+background-color: #d5d7e1;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .searchForm {
@@ -68,34 +68,34 @@ margin-bottom: 15px;
 font-family: 'Londrina Solid', sans-serif;
 padding: 10px 16px;
 font-size: 16px;
-border: 2px solid #e1d7d5; /* Light grey border */
-border-radius: 8px 0 0 8px; /* Rounded corners on left side */
-outline: none; /* Remove default outline */
-transition: all 0.3s ease; /* Smooth transition for focus */
+border: 2px solid #e1d7d5;
+border-radius: 8px 0 0 8px;
+outline: none;
+transition: all 0.3s ease;
 }
 
 .searchInput:focus {
-border-color: #000000; /* Black border on focus */
+border-color: #000000;
 }
 
 .searchButton {
 font-family: 'Londrina Solid', sans-serif;
-background-color: #e1d7d5; /* Black background */
+background-color: #e1d7d5;
 border: none;
 color: #323435;
 padding: 10px 16px;
 font-size: 16px;
 cursor: pointer;
-border-radius: 0 8px 8px 0; /* Rounded corners on right side */
-transition: all 0.3s ease; /* Smooth transition for hover */
-font-weight: 400; /* Bold Londrina */
+border-radius: 0 8px 8px 0;
+transition: all 0.3s ease;
+font-weight: 400;
 text-transform: uppercase;
 letter-spacing: 0.5px;
 }
 
 .searchButton:hover {
-background-color: #d5d7e1; /* Slightly lighter black on hover */
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+background-color: #d5d7e1;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .probeNounsContainer {
@@ -117,7 +117,7 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
 }
   
 .probeLogo {
-    height: 20px; /* Adjust the height as needed */
+    height: 20px;
 }
 
 .loadingGif {
@@ -189,8 +189,8 @@ flex-direction: column;
   }
 
   .auctionInfoSection {
-    flex-basis: auto; /* Change this line */
-    margin: 0 auto; /* Add this line */
-    max-width: 100%; /* Add this line */
+    flex-basis: auto;
+    margin: 0 auto;
+    max-width: 100%;
   }
 }
