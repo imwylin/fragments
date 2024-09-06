@@ -14,7 +14,7 @@
     padding: 10px 32px;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 0 8px 8px 0;
   }
   
   .button:hover {
@@ -27,8 +27,8 @@
     padding: 10px 20px;
     width: 230px;
     font-size: 18px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 2px solid #e1d7d5;
+    border-radius: 8px 0 0 8px;
     margin-right: 10px;
   }
 

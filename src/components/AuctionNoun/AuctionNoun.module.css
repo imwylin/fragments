@@ -68,7 +68,7 @@ margin-bottom: 15px;
 font-family: 'Londrina Solid', sans-serif;
 padding: 10px 16px;
 font-size: 16px;
-border: 2px solid #ccc; /* Light grey border */
+border: 2px solid #e1d7d5; /* Light grey border */
 border-radius: 8px 0 0 8px; /* Rounded corners on left side */
 outline: none; /* Remove default outline */
 transition: all 0.3s ease; /* Smooth transition for focus */
