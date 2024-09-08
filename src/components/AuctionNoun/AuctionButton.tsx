@@ -34,7 +34,14 @@ const AuctionButton = () => {
 
   useEffect(() => {
     if (auctionData && !isLoading && !isError) {
-      setIsAuctionSettled(auctionData.settled);
+      const currentTime = Math.floor(Date.now() / 1000); // Get current time in seconds
+      const auctionEndTime = Number(auctionData.endTime); // Convert endTime to number
+  
+      // Check if the current time is past the auction end time
+      const isAuctionOver = currentTime > auctionEndTime;
+  
+      // Set isAuctionSettled based on both settled and isAuctionOver
+      setIsAuctionSettled(auctionData.settled || isAuctionOver);
     }
   }, [auctionData, isLoading, isError]);
 

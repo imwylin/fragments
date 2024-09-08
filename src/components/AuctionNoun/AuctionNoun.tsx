@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useBlockNumber, useReadContract, useReadContracts } from 'wagmi';
-import { formatEther } from 'viem';
+import { useBlockNumber, useReadContract, useReadContracts, useWatchContractEvent } from 'wagmi';
+import { formatEther, Log } from 'viem';
 import { ENSName } from 'react-ens-name';
 import { useNounSeed } from '../../utils/nounToken';
 import { NounsAuctionHouseABI } from '../../abis/NounsAuctionHouse';
@@ -45,7 +45,6 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
   const [searchNounId, setSearchNounId] = useState<string>('');
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [timeLeft, setTimeLeft] = useState<string>('');
-
   const [auctionNounId, setAuctionNounId] = useState<bigint>(BigInt(0));
 
   const { data: auctionData } = useReadContracts({
@@ -113,6 +112,28 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
       return () => clearInterval(timer);
     }
   };
+
+  const [auctionBids, setAuctionBids] = useState<
+    { nounId: bigint; sender: string; value: bigint; extended: boolean }[]
+  >([]);
+
+  useWatchContractEvent({
+    address: AUCTION_HOUSE_ADDRESS,
+    abi: NounsAuctionHouseABI,
+    eventName: 'AuctionBid',
+    onLogs(logs: Log[]) {
+      logs.forEach((log) => {
+        const event = (log as any).args;
+        if (event) {
+          const { nounId, sender, value, extended } = event;
+          setAuctionBids((prevBids) => [
+            ...prevBids,
+            { nounId, sender, value, extended },
+          ]);
+        }
+      });
+    },
+  });
 
   useEffect(() => {
     updateTimeLeft();
@@ -292,9 +313,7 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
         <div className={classes.auctionInfo}>
           <h2>Current Auction</h2>
           <p>Time Left: {timeLeft}</p>
-          <p>
-            Bidder: <ENSName address={currentAuctionData.bidder} />
-          </p>
+          <p>Bidder: <ENSName address={currentAuctionData.bidder} /></p>
           <p>High Bid: {formatEther(currentAuctionData.amount)} Ξ</p>
         </div>
       );
@@ -396,13 +415,30 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
           <ProbeNounsLink />
         </div>
         <div className={classes.auctionInfoSection}>
-          {renderAuctionInfo()}
-          <AuctionButton />
-        </div>
+        {renderAuctionInfo()}
+        <AuctionButton />
+        {auctionBids.length > 0 && (
+          <div>
+            <h3>Recent Auction Bids</h3>
+            <ul>
+              {auctionBids.map((bid, index) => (
+                <li key={index}>
+                  <p>
+                    Noun ID: {bid.nounId.toString()} | Sender:{' '}
+                    <ENSName address={bid.sender} />
+                  </p>
+                  <p>Value: {formatEther(bid.value)} Ξ</p>
+                  <p>Extended: {bid.extended.toString()}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
-      {error && <div className={classes.error}>{error}</div>}
     </div>
-  );
+    {error && <div className={classes.error}>{error}</div>}
+  </div>
+);
 };
 
 export default AuctionNoun;

@@ -268,6 +268,9 @@ const Infographic: NextPage = () => {
               stroke="white"
               strokeWidth="2"
             />
+            <text x="1100" y="625" textAnchor="middle" fill="white">
+              NFTs
+            </text>
             <text x="1100" y="605" textAnchor="middle" fill="white">
               Fragment Nouns
             </text>
@@ -325,6 +328,9 @@ const Infographic: NextPage = () => {
               stroke="white"
               strokeWidth="2"
             />
+            <text x="900" y="625" textAnchor="middle" fill="white">
+              NFTs
+            </text>
             <text x="900" y="605" textAnchor="middle" fill="white">
               Fragment Nouns
             </text>
