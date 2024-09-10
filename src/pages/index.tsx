@@ -3,7 +3,10 @@ import type { NextPage } from 'next';
 import styles from '../styles/Home.module.css';
 import Navbar from '../components/NavBar/NavBar';
 import AuctionNoun from '../components/AuctionNoun/AuctionNoun';
+import NounsX from '../components/NounsX/NounsX';
+import ResponsiveIframe from '../components/ResponsiveIframe/ResponsiveIframe';
 import JapaneseNoggles from '../art/japanesenoggles';
+import Footer from '../components/Footer/Footer';
 
 const Home: NextPage = () => {
   const [backgroundColor, setBackgroundColor] = useState<string>('#343235');
@@ -28,14 +31,23 @@ const Home: NextPage = () => {
           onNounIdChange={handleNounIdChange}
           extractedColor={extractedColor}
         />
+        <div className={styles.contentRow}>
+        <div className={styles.nounsXContainer}>
+            <NounsX height={565} theme="dark" />
+          </div>
+  <div className={styles.iframeContainer}>
+    <ResponsiveIframe
+      src="https://nounstown.wtf"
+      title="Nouns Town Website"
+      height="565px"
+            />
+          </div>
+        </div>
         <div className={styles.japaneseNogglesContainer}>
           <JapaneseNoggles />
         </div>
       </main>
-      <footer className={styles.footer}>
-        <p className={styles.subtitle}>fragments. cc0 no rights reserved</p>
-        <p className={styles.emoji}>💎</p>
-      </footer>
+      <Footer />
     </div>
   );
 };

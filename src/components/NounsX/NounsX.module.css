@@ -1,0 +1,8 @@
+.twitterTimelineWrapper {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .twitterTimelineWrapper > iframe {
+    height: 100% !important;
+  }

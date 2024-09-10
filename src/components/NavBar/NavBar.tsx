@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ConnectButton from './ConnectButton/ConnectButton';
 import TreasuryBalance from './TreasuryBalance/TreasuryBalance';
-import EthGasPrice from './EthGasPrice';
+import EthGasPrice from './EthGasPrice/EthGasPrice';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {

@@ -1,0 +1,38 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 0;
+    border-top: 1px solid #eaeaea;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    color: #ffffff;
+  }
+  
+  .subtitle a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .subtitle a:hover {
+    color: #2b83f6;
+  }
+  
+  .emoji {
+    font-size: 1.5rem;
+    margin-top: 0rem;
+  }
+  
+  .emoji a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .emoji a:hover {
+    color: #2b83f6;
+  }
