@@ -32,14 +32,14 @@ const Home: NextPage = () => {
           extractedColor={extractedColor}
         />
         <div className={styles.contentRow}>
-        <div className={styles.nounsXContainer}>
+          <div className={styles.nounsXContainer}>
             <NounsX height={565} theme="dark" />
           </div>
-  <div className={styles.iframeContainer}>
-    <ResponsiveIframe
-      src="https://nounstown.wtf"
-      title="Nouns Town Website"
-      height="565px"
+          <div className={styles.iframeContainer}>
+            <ResponsiveIframe
+              src="https://nounstown.wtf"
+              title="Nouns Town Website"
+              height="565px"
             />
           </div>
         </div>

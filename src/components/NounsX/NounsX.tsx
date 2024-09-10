@@ -7,7 +7,11 @@ interface TwitterTimelineProps {
   theme?: 'light' | 'dark';
 }
 
-const NounsX: React.FC<TwitterTimelineProps> = ({ height = 625, maxHeight, theme = 'dark' }) => {
+const NounsX: React.FC<TwitterTimelineProps> = ({
+  height = 625,
+  maxHeight,
+  theme = 'dark',
+}) => {
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://platform.twitter.com/widgets.js';
@@ -20,9 +24,12 @@ const NounsX: React.FC<TwitterTimelineProps> = ({ height = 625, maxHeight, theme
   }, []);
 
   return (
-    <div 
-      className={styles.twitterTimelineWrapper} 
-      style={{ height: `${height}px`, maxHeight: maxHeight ? `${maxHeight}px` : undefined }}
+    <div
+      className={styles.twitterTimelineWrapper}
+      style={{
+        height: `${height}px`,
+        maxHeight: maxHeight ? `${maxHeight}px` : undefined,
+      }}
     >
       <a
         className="twitter-timeline"

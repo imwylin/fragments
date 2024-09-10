@@ -22,7 +22,7 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.leftSection}>
         <div className={styles.logo}>
-        <Link href="/">
+          <Link href="/">
             <Image
               src="/logo.png"
               alt="Your Logo"
@@ -34,7 +34,7 @@ const Navbar = () => {
           </Link>
         </div>
         <TreasuryBalance />
-        <EthGasPrice /> 
+        <EthGasPrice />
         <div className={styles.sandwichMenuContainer}>
           <div className={styles.sandwichMenu} onClick={toggleMenu}>
             <span></span>

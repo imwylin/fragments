@@ -8,11 +8,15 @@ const EthPriceGas = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const ethPriceResponse = await fetch('https://api.etherscan.io/api?module=stats&action=ethprice&apikey=FYBQKTA9IF438WAQNVWIR1K33W2HJQ6S8A');
+        const ethPriceResponse = await fetch(
+          'https://api.etherscan.io/api?module=stats&action=ethprice&apikey=FYBQKTA9IF438WAQNVWIR1K33W2HJQ6S8A'
+        );
         const ethPriceData = await ethPriceResponse.json();
         setEthPrice(parseFloat(ethPriceData.result.ethusd));
 
-        const gasPriceResponse = await fetch('https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=FYBQKTA9IF438WAQNVWIR1K33W2HJQ6S8A');
+        const gasPriceResponse = await fetch(
+          'https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=FYBQKTA9IF438WAQNVWIR1K33W2HJQ6S8A'
+        );
         const gasPriceData = await gasPriceResponse.json();
         setAverageGasPrice(parseFloat(gasPriceData.result.ProposeGasPrice));
       } catch (error) {
@@ -35,7 +39,8 @@ const EthPriceGas = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          ETH Price: {ethPrice !== null ? `$${ethPrice.toFixed(2)}` : 'Loading...'}
+          ETH Price:{' '}
+          {ethPrice !== null ? `$${ethPrice.toFixed(2)}` : 'Loading...'}
         </a>
       </div>
       <div className={styles.gasPrice}>
@@ -44,7 +49,10 @@ const EthPriceGas = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Gas: {averageGasPrice !== null ? `${averageGasPrice.toFixed(2)}` : 'Loading...'}
+          Gas:{' '}
+          {averageGasPrice !== null
+            ? `${averageGasPrice.toFixed(2)}`
+            : 'Loading...'}
         </a>
       </div>
     </div>

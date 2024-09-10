@@ -33,9 +33,9 @@ const AuctionButton = () => {
     if (auctionData && !isLoading && !isError) {
       const currentTime = Math.floor(Date.now() / 1000);
       const auctionEndTime = Number(auctionData.endTime);
-  
+
       const isAuctionOver = currentTime > auctionEndTime;
-  
+
       setIsAuctionOver(isAuctionOver);
     }
   }, [auctionData, isLoading, isError]);

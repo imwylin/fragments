@@ -1,5 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useBlockNumber, useReadContract, useReadContracts, useWatchContractEvent } from 'wagmi';
+import {
+  useBlockNumber,
+  useReadContract,
+  useReadContracts,
+  useWatchContractEvent,
+} from 'wagmi';
 import { formatEther, Log } from 'viem';
 import { ENSName } from 'react-ens-name';
 import { useNounSeed } from '../../utils/nounToken';
@@ -112,8 +117,6 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
       return () => clearInterval(timer);
     }
   };
-
-  
 
   useEffect(() => {
     updateTimeLeft();
@@ -279,6 +282,21 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
   };
 
   const renderAuctionInfo = () => {
+    if (isCurrentAuctionLoading || isPastAuctionLoading) {
+      return (
+        <div className={classes.auctionInfo}>
+          <h2>Loading Auction Data</h2>
+          <div className={classes.loadingContainer}>
+            <img
+              src="/loadingdata.gif"
+              alt="Loading"
+              className={classes.loadingGif}
+            />
+          </div>
+        </div>
+      );
+    }
+
     if (
       isAuctionNoun &&
       currentAuctionData &&
@@ -290,7 +308,9 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
         <div className={classes.auctionInfo}>
           <h2>Current Auction</h2>
           <p>Time Left: {timeLeft}</p>
-          <p>Bidder: <ENSName address={currentAuctionData.bidder} /></p>
+          <p>
+            Bidder: <ENSName address={currentAuctionData.bidder} />
+          </p>
           <p>High Bid: {formatEther(currentAuctionData.amount)} Ξ</p>
         </div>
       );
@@ -327,6 +347,7 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
     }
     return null;
   };
+  
 
   return (
     <div
@@ -392,13 +413,13 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
           <ProbeNounsLink />
         </div>
         <div className={classes.auctionInfoSection}>
-        {renderAuctionInfo()}
-        <AuctionButton />
+          {renderAuctionInfo()}
+          <AuctionButton />
+        </div>
       </div>
+      {error && <div className={classes.error}>{error}</div>}
     </div>
-    {error && <div className={classes.error}>{error}</div>}
-  </div>
-);
+  );
 };
 
 export default AuctionNoun;
