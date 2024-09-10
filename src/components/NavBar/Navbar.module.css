@@ -57,18 +57,30 @@
   color: #ffffff;
 }
 
+.playMenuContainer::after {
+  content: '';
+  position: absolute;
+  height: 15px;
+  left: 0;
+  right: 0;
+  bottom: -15px;
+}
+
 .playDropdown {
   position: absolute;
-  top: 100%;
-  right: 0;
+  top: calc(100% + 2rem);
+  right: 0px;
   background-color: #343235;
   border: 1px solid #ffffff;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 0.75rem 0.5rem;
+  padding-top: 15px;
+  margin-top: -15px;
   z-index: 1;
   display: none;
-  text-align: right; /* Hide the dropdown by default */
-  color: #ffffff; /* Change the text color */
+  text-align: right;
+  color: #ffffff;
   width: 150px;
 }
 
@@ -143,8 +155,9 @@
 }
 
 @media (min-width: 768px) {
-  .playMenuContainer:hover .playDropdown {
-    display: block; /* Show the dropdown on hover for desktop */
+  .playMenuContainer:hover .playDropdown,
+  .playMenuContainer:hover::after {
+    display: block; /* Show both the dropdown and the invisible area on hover */
   }
 }
 

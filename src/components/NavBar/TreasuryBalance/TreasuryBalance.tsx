@@ -131,6 +131,7 @@ const TreasuryBalance = () => {
                     : `${formatNumber(token.balance?.formatted || '0')}`}
             </div>
           ))}
+          <div className={styles.divider}></div>
           <div className={styles.dropdownItem}>
             Total: ${formatNumber(calculateTotalUSD(balances).toString(), 2)}
           </div>
