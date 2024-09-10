@@ -126,6 +126,15 @@ height: auto;
 max-width: 320px;
 }
 
+.loadingDataGif {
+    width: 50%;
+    height: auto;
+    max-width: 320px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: .4rem;
+}
+
 .nounContent {
 display: flex;
 flex-wrap: wrap;

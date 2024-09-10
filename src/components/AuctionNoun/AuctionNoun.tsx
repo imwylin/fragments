@@ -290,7 +290,7 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
             <img
               src="/loadingdata.gif"
               alt="Loading"
-              className={classes.loadingGif}
+              className={classes.loadingDataGif}
             />
           </div>
         </div>
