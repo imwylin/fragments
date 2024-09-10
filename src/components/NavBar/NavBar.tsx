@@ -33,7 +33,9 @@ const Navbar = () => {
             />
           </Link>
         </div>
-        <TreasuryBalance />
+        <div className={styles.treasuryButton}>
+          <TreasuryBalance />
+        </div>
         <EthGasPrice />
         <div className={styles.sandwichMenuContainer}>
           <div className={styles.sandwichMenu} onClick={toggleMenu}>
