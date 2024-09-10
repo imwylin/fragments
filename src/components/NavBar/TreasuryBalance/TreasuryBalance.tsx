@@ -4,7 +4,6 @@ import styles from './TreasuryBalance.module.css';
 
 const TREASURY_ADDRESS = '0xb1a32FC9F9D8b2cf86C068Cae13108809547ef71';
 
-// Define the tokens you want to display
 const TOKENS = [
   { symbol: 'ETH', address: undefined },
   {
@@ -32,6 +31,7 @@ const TOKENS = [
 const TreasuryBalance = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [dropdownWidth, setDropdownWidth] = useState(0);
+  const [tokenPrices, setTokenPrices] = useState<Record<string, number>>({});
   const buttonRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
@@ -40,12 +40,47 @@ const TreasuryBalance = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const fetchTokenPrices = async () => {
+      try {
+        // Fetch prices from an API (e.g., CoinGecko)
+        const response = await fetch(
+          'https://api.coingecko.com/api/v3/simple/price?ids=ethereum,staked-ether,rocket-pool-eth,wrapped-steth&vs_currencies=usd'
+        );
+        const data = await response.json();
+        setTokenPrices({
+          ETH: data.ethereum.usd,
+          WETH: data.ethereum.usd,
+          STETH: data['staked-ether'].usd,
+          rETH: data['rocket-pool-eth'].usd,
+          wstETH: data['wrapped-steth'].usd,
+          USDC: 1, // USDC is a stablecoin, so we assume 1 USDC = 1 USD
+        });
+      } catch (error) {
+        console.error('Error fetching token prices:', error);
+      }
+    };
+
+    fetchTokenPrices();
+  }, []);
+
   const formatNumber = (value: string, decimals: number = 2) => {
     const number = parseFloat(value);
     return number.toLocaleString('en-US', {
       minimumFractionDigits: decimals,
       maximumFractionDigits: decimals,
     });
+  };
+
+  const calculateTotalUSD = (balances: any[]) => {
+    return balances.reduce((sum, token) => {
+      if (token.isLoading || token.isError) return sum;
+      
+      const balance = parseFloat(token.balance?.formatted || '0');
+      const price = tokenPrices[token.symbol] || 0;
+      
+      return sum + balance * price;
+    }, 0);
   };
 
   const balances = TOKENS.map((token) => {
@@ -96,6 +131,9 @@ const TreasuryBalance = () => {
                     : `${formatNumber(token.balance?.formatted || '0')}`}
             </div>
           ))}
+          <div className={styles.dropdownItem}>
+            Total: ${formatNumber(calculateTotalUSD(balances).toString(), 2)}
+          </div>
         </div>
       )}
     </div>
