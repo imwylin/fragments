@@ -113,27 +113,7 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
     }
   };
 
-  const [auctionBids, setAuctionBids] = useState<
-    { nounId: bigint; sender: string; value: bigint; extended: boolean }[]
-  >([]);
-
-  useWatchContractEvent({
-    address: AUCTION_HOUSE_ADDRESS,
-    abi: NounsAuctionHouseABI,
-    eventName: 'AuctionBid',
-    onLogs(logs: Log[]) {
-      logs.forEach((log) => {
-        const event = (log as any).args;
-        if (event) {
-          const { nounId, sender, value, extended } = event;
-          setAuctionBids((prevBids) => [
-            ...prevBids,
-            { nounId, sender, value, extended },
-          ]);
-        }
-      });
-    },
-  });
+  
 
   useEffect(() => {
     updateTimeLeft();
@@ -174,7 +154,6 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
     if (seed !== null && seed !== undefined) {
       const loadBuildSVG = async () => {
         try {
-          console.log('Sending request to generate SVG with seed:', seed);
           const response = await fetch('/api/generateSVG', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -189,11 +168,9 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
           }
 
           const data = await response.json();
-          console.log('Received SVG data:', data);
           setSvg(`data:image/svg+xml;base64,${btoa(data.svg)}`);
           setError(null);
         } catch (err) {
-          console.error('Error in loadBuildSVG:', err);
           if (err instanceof Error) {
             setError('Failed to load SVG: ' + err.message);
           } else {
@@ -417,23 +394,6 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
         <div className={classes.auctionInfoSection}>
         {renderAuctionInfo()}
         <AuctionButton />
-        {auctionBids.length > 0 && (
-          <div>
-            <h3>Recent Auction Bids</h3>
-            <ul>
-              {auctionBids.map((bid, index) => (
-                <li key={index}>
-                  <p>
-                    Noun ID: {bid.nounId.toString()} | Sender:{' '}
-                    <ENSName address={bid.sender} />
-                  </p>
-                  <p>Value: {formatEther(bid.value)} Ξ</p>
-                  <p>Extended: {bid.extended.toString()}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
     </div>
     {error && <div className={classes.error}>{error}</div>}

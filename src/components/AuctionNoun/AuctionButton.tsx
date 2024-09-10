@@ -17,7 +17,7 @@ interface AuctionData {
 
 const AuctionButton = () => {
   const [bidAmount, setBidAmount] = useState('');
-  const [isAuctionSettled, setIsAuctionSettled] = useState(false);
+  const [isAuctionOver, setIsAuctionOver] = useState(false);
 
   const {
     data: auctionData,
@@ -29,21 +29,19 @@ const AuctionButton = () => {
     functionName: 'auction',
   }) as { data: AuctionData | undefined; isError: boolean; isLoading: boolean };
 
-  const { writeContract: bidOnAuction } = useWriteContract();
-  const { writeContract: settleAuction } = useWriteContract();
-
   useEffect(() => {
     if (auctionData && !isLoading && !isError) {
-      const currentTime = Math.floor(Date.now() / 1000); // Get current time in seconds
-      const auctionEndTime = Number(auctionData.endTime); // Convert endTime to number
+      const currentTime = Math.floor(Date.now() / 1000);
+      const auctionEndTime = Number(auctionData.endTime);
   
-      // Check if the current time is past the auction end time
       const isAuctionOver = currentTime > auctionEndTime;
   
-      // Set isAuctionSettled based on both settled and isAuctionOver
-      setIsAuctionSettled(auctionData.settled || isAuctionOver);
+      setIsAuctionOver(isAuctionOver);
     }
   }, [auctionData, isLoading, isError]);
+
+  const { writeContract: bidOnAuction } = useWriteContract();
+  const { writeContract: settleAuction } = useWriteContract();
 
   const handleBidSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -53,12 +51,14 @@ const AuctionButton = () => {
         address: AUCTION_HOUSE_ADDRESS,
         abi: NounsAuctionHouseABI,
         functionName: 'createBid',
-        args: [auctionData.nounId, 11], // Pass the nounId and clientId 11 as arguments
+        args: [auctionData.nounId, 11],
         value: parseEther(bidAmount),
       });
       console.log('Bid submitted successfully', result);
     } catch (error) {
       console.error('Error submitting bid:', error);
+    } finally {
+      setBidAmount('');
     }
   };
 
@@ -81,7 +81,7 @@ const AuctionButton = () => {
 
   return (
     <div className={classes.container}>
-      {isAuctionSettled ? (
+      {isAuctionOver ? (
         <button className={classes.button} onClick={handleSettleAuction}>
           Settle Auction
         </button>

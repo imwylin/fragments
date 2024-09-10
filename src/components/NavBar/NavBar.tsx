@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ConnectButton from './ConnectButton/ConnectButton';
 import TreasuryBalance from './TreasuryBalance/TreasuryBalance';
+import EthGasPrice from './EthGasPrice';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
@@ -33,6 +34,7 @@ const Navbar = () => {
           </Link>
         </div>
         <TreasuryBalance />
+        <EthGasPrice /> 
         <div className={styles.sandwichMenuContainer}>
           <div className={styles.sandwichMenu} onClick={toggleMenu}>
             <span></span>

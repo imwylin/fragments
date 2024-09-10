@@ -1,27 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;400&display=swap');
 
+.treasuryContainer {
+  position: relative;
+  display: inline-block;
+}
+
 .treasuryButton {
-  font-family: 'Londrina Solid', sans-serif;
-    background-color: #fff;
-    border: none;
-    color: 343235;
-    padding: 12px 24px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-  }
-  
-  .treasuryButton:hover {
-    background-color: #4b4949;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
+  display: inline-block;
+  background-color: #ffffff;
+  color: #333333;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: regular;
+  transition: background-color 0.3s;
+}
+
+.treasuryButton:hover {
+  background-color: #f0f0f0;
+  color: #2b83f6;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 10px;
+}
+
+.dropdownItem {
+  padding: 5px 0;
+  font-size: 16px;
+}
   
   @media (max-width: 600px) {
     .treasuryButton {

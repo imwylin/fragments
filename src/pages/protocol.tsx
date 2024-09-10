@@ -5,7 +5,7 @@ import Infographic from '../components/Protocol/Infographic';
 
 const ProtocolPage: React.FC = () => {
   return (
-    <div>
+    <div className={styles.pageWrapper}>
       <Navbar />
       <main>
         <div className={styles.infographicContainer}>

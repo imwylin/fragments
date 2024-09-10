@@ -20,8 +20,8 @@
 }
 
 .connectButton:hover, .accountButton:hover {
-  background-color: #4b4949; /* Slightly lighter black on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive design */
