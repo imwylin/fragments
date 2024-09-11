@@ -198,8 +198,8 @@
   }
 
   .leftSection {
-    gap: 0.5rem;
-    align-items: center;
+    flex: 1;
+    justify-content: space-between;
   }
 
   .logo {
