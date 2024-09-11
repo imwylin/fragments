@@ -230,6 +230,7 @@
 
   .sandwichMenu {
     display: block;
+    align-items: right;
   }
 
   .menuDropdown {
