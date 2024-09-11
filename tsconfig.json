@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/utils/**/*", "../Library/components/EthereumCasts.tsx",
+    "src/utils/**/*", "../Library/components/EthereumCasts.tsx", "../Library/components/AuctionInfo.tsx", "../Library/components/AuctionNounContainer.tsx", "../Library/components/NounImage.tsx", "../Library/components/NounNavigation.tsx",
   ],
   "exclude": [
     "node_modules"

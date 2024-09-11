@@ -163,16 +163,26 @@
 
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: flex-start;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
   }
 
   .leftSection {
-    width: 100%;
-    justify-content: flex-start;
-    align-items: center; 
-    margin-bottom: 0.5rem;
+    width: auto;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    width: 80px;
+    height: 40px;
+  }
+
+  .treasuryButton,
+  .ethGasPrice {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem;
   }
 
   .desktopLinksSection {
@@ -255,9 +265,24 @@
   }
 
 @media (max-width: 480px) {
-  .logo {
-    width: 60px; /* Adjust the width for even smaller screens */
-    height: 30px; /* Adjust the height for even smaller screens */
+  .treasuryButton span,
+    .ethGasPrice span {
+      display: none;
+    }
+
+    .treasuryButton,
+    .ethGasPrice {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
+
+    .logo {
+      width: 60px;
+      height: 30px;
     }
   }
 }
