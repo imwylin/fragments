@@ -175,33 +175,92 @@ text-overflow: ellipsis;
 max-width: 100%;
 }
 
-@media (max-width: 600px) {
+.desktopControls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .mobileControls {
+    display: none;
+  }
+
+@media (max-width: 768px) {
 .auctionNounWrapper {
 padding: 16px;
  }
 
-.navButton {
-padding: 10px 20px;
-font-size: 14px;
- }
+ .nounContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+  }
 
-.searchInput, .searchButton {
-font-size: 14px;
-padding: 8px 12px;
- }
-
-.nounContent {
-flex-direction: column;
- }
-
-.nounImageSection {
+  .nounImageSection {
     flex-basis: 100%;
-    margin-right: 0;
+    margin-bottom: 0rem;
   }
 
   .auctionInfoSection {
-    flex-basis: auto;
+    flex-direction: column;
     margin: 0 auto;
     max-width: 100%;
+    padding-top: 0rem;
+  }
+
+  .buttonContainer {
+    display: none;
+  }
+
+  .searchForm {
+    display: none;
+  }
+
+  .desktopControls {
+    display: none;
+  }
+
+  .mobileControls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+  }
+
+  .mobileControls .buttonContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mobileControls .navButton {
+    font-size: 1rem;
+    padding: 12px 20px;
+    min-width: 60px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobileControls .searchForm {
+    display: flex;
+  }
+
+  .mobileControls .searchButton {
+    font-size: 1rem; /* Increase font size */
+    padding: 10px 20px; /* Increase padding */
+    height: 45px; /* Match height with input */
+    margin-right: 5rem;
+  }
+
+  .mobileControls .searchInput {
+    flex-grow: 1;
+    font-size: 1rem; /* Increase font size */
+    padding: 10px 15px; /* Increase padding */
+    height: 45px; /* Match height with buttons */
+    margin-left: 5rem;
   }
 }
