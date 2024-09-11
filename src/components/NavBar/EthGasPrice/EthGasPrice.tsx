@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './EthGasPrice.module.css';
+import styles from '../Navbar.module.css';
 
 const EthPriceGas = () => {
   const [ethPrice, setEthPrice] = useState<number | null>(null);

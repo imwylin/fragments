@@ -36,7 +36,9 @@ const Navbar = () => {
         <div className={styles.treasuryButton}>
           <TreasuryBalance />
         </div>
-        <EthGasPrice />
+        <div className={styles.ethGasPriceContainer}>
+          <EthGasPrice />
+        </div>
         <div className={styles.sandwichMenuContainer}>
           <div className={styles.sandwichMenu} onClick={toggleMenu}>
             <span></span>

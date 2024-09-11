@@ -31,6 +31,36 @@
   margin-left: 1rem; /* Add left margin to the Treasury button */
 }
 
+.ethGasPriceContainer {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  background-color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.ethPrice,
+.gasPrice {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.ethPrice a,
+.gasPrice a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ethGasPriceContainer a:hover {
+  background-color: #f0f0f0;
+}
+.ethPrice a:hover,
+.gasPrice a:hover {
+  color: #0070f3;
+}
+
 .desktopLinksSection {
   display: flex;
   color: #ffffff;
@@ -186,8 +216,8 @@
     justify-content: center;
   }
 
-  .ethGasPrice {
-    display: none; /* Hide EthGasPrice on mobile screens */
+  .ethGasPriceContainer {
+    display: none;
   }
 
   .desktopLinksSection {
@@ -242,6 +272,7 @@
   }
   
   .menuDropdown .connectButton {
+    justify-content: center;
     border-top: 1px solid #ffffff; /* Add a top border */
     padding-top: 1rem; /* Add some padding above the connect button */
   }
@@ -286,8 +317,9 @@
     display: none;
   }
 
-  .ethGasPrice {
+  .ethGasPriceContainer {
     display: none;
   }
+
   }
 }
