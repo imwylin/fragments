@@ -177,14 +177,17 @@
     height: 45px;
   }
 
-  .treasuryButton,
-  .ethGasPrice {
+  .treasuryButton {
     font-size: 0.7rem; /* Reduce font size */
     padding: 0.2rem 0.3rem; /* Reduce padding */
     height: 24px; /* Set a fixed height */
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .ethGasPrice {
+    display: none; /* Hide EthGasPrice on mobile screens */
   }
 
   .desktopLinksSection {
@@ -280,8 +283,11 @@
     font-size: 0.7rem;
   }
 
-  .treasuryButton span,
-  .ethGasPrice span {
+  .treasuryButton span {
+    display: none;
+  }
+
+  .ethGasPrice {
     display: none;
   }
   }
