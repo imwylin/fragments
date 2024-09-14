@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;400&display=swap');
 
-.connectButton, .accountButton {
+.connectButton, .accountButton, .chainButton {
   font-family: 'Londrina Solid', sans-serif;
-  background-color: #fff; /* Black background */
+  background-color: #fff;
   border: none;
-  color: 343235;
+  color: #343235;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
@@ -12,22 +12,32 @@
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  border-radius: 8px; /* Slightly rounded corners */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-  font-weight: 400; /* Lighter weight Londrina */
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.connectButton:hover, .accountButton:hover {
+.connectButton:hover, .accountButton:hover, .chainButton:hover {
   background-color: #f0f0f0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.connectedButtons {
+  display: flex;
+  gap: 10px;
+}
+
 /* Responsive design */
 @media (max-width: 600px) {
-  .connectButton, .accountButton {
-    padding: 10px 20px;
+  .connectButton, .accountButton, .chainButton {
+    padding: 8px 16px;
     font-size: 14px;
+  }
+  
+  .connectedButtons {
+    flex-direction: column;
+    gap: 5px;
   }
 }

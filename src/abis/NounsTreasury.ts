@@ -1,6 +1,6 @@
 // NounsTreasury.ts
 
-const NounsTreasuryABI = [
+export const NounsTreasuryABI = [
   {
     inputs: [
       {
@@ -71,5 +71,3 @@ const NounsTreasuryABI = [
     type: 'receive',
   },
 ];
-
-export default NounsTreasuryABI;

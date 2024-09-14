@@ -1,3 +1,4 @@
+import React from 'react';
 import { ConnectButton as RainbowConnectButton } from '@rainbow-me/rainbowkit';
 import styles from './ConnectButton.module.css';
 
@@ -9,6 +10,7 @@ const ConnectButton = () => {
         chain,
         openAccountModal,
         openConnectModal,
+        openChainModal,
         authenticationStatus,
         mounted,
       }) => {
@@ -19,7 +21,6 @@ const ConnectButton = () => {
           chain &&
           (!authenticationStatus || authenticationStatus === 'authenticated');
 
-        // Format the balance to 3 decimal places with Ξ after the amount
         const formattedBalance = account?.displayBalance
           ? `${parseFloat(account.displayBalance).toFixed(3)} Ξ`
           : '';
@@ -44,13 +45,22 @@ const ConnectButton = () => {
                 Connect Wallet
               </button>
             ) : (
-              <button
-                onClick={openAccountModal}
-                type="button"
-                className={styles.accountButton}
-              >
-                {formattedBalance} {account?.displayName || ''}
-              </button>
+              <div className={styles.connectedButtons}>
+                <button
+                  onClick={openChainModal}
+                  type="button"
+                  className={styles.chainButton}
+                >
+                  {chain?.name || 'Unknown'}
+                </button>
+                <button
+                  onClick={openAccountModal}
+                  type="button"
+                  className={styles.accountButton}
+                >
+                  {formattedBalance} {account?.displayName || ''}
+                </button>
+              </div>
             )}
           </div>
         );
