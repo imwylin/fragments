@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAccount, useReadContract, useReadContracts, useWriteContract } from 'wagmi';
 import { Address, Abi } from 'viem';
 import { NounsTokenSpoliaABI } from '../../../abis/NounsTokenSepolia';
 import { NounsFragmentManagerABI } from '../../../abis/NounsFragmentManager';
+import SafeImage from '/Safe.png';
 import styles from './NounDeposit.module.css';
 
 interface Seed {
@@ -25,6 +26,7 @@ const NounDeposit: React.FC = () => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [showFragmentSizes, setShowFragmentSizes] = useState<boolean>(false);
   const [nounSVGs, setNounSVGs] = useState<Record<string, string>>({});
+  const popupRef = useRef<HTMLDivElement>(null);
 
   const { address } = useAccount();
 
@@ -92,7 +94,7 @@ const NounDeposit: React.FC = () => {
 
   const handleButtonClick = () => {
     if (!selectedNoun) {
-      setShowPopup(true);
+      setShowPopup(prevState => !prevState);
     }
   };
 
@@ -106,16 +108,18 @@ const NounDeposit: React.FC = () => {
   const hasError = balanceError || tokenIdsError || seedsError;
 
   return (
-    <div className={styles.nounDepositWrapper}>
-      <button className={styles.nounDepositButton} onClick={handleButtonClick}>
-        {selectedNoun ? (
-          <img src={nounSVGs[selectedNoun.toString()]} alt={`Noun ${selectedNoun.toString()}`} className={styles.nounSvg} />
-        ) : (
-          'Deposit Noun'
-        )}
-      </button>
+    <>
+      <div className={styles.nounDepositWrapper}>
+  <button className={styles.nounDepositButton} onClick={handleButtonClick}>
+    <span className={styles.buttonText}>
+      $⌐◧-◧<br />
+      Click Here to<br />
+      Vault Your Noun
+    </span>
+  </button>
+</div>
       {showPopup && (
-        <div className={styles.nounPopup}>
+        <div className={styles.nounPopup} ref={popupRef}>
           <h3>Select a Noun to deposit</h3>
           {isLoading && <div className={styles.loading}>Loading Nouns...</div>}
           {hasError && <div className={styles.error}>Error loading Nouns. Please try again.</div>}
@@ -139,8 +143,7 @@ const NounDeposit: React.FC = () => {
           )}
         </div>
       )}
-      {showFragmentSizes && selectedNoun && <FragmentSizeSelector nounId={selectedNoun} />}
-    </div>
+    </>
   );
 };
 

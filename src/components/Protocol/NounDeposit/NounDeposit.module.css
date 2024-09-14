@@ -1,34 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@400;700&display=swap');
 
 .nounDepositWrapper {
-  font-family: 'Londrina Solid', sans-serif;
-  background-color: #f9f9f9;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
+  background-image: url('/safe.svg');
+  background-size: 100% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 600px;
+  height: 280px;
   position: relative;
   display: flex;
-  flex-direction: column;
-  margin-bottom: 20rem;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 1rem;
 }
 
 .nounDepositButton {
-  width: 200px;
-  height: 200px;
-  background-color: #f0f0f0;
-  border: 2px solid #333;
-  border-radius: 10px;
-  cursor: pointer;
   display: flex;
   justify-content: center;
-  margin: 0 auto;
   align-items: center;
-  font-size: 18px;
-  font-weight: bold;
-  overflow: hidden;
+  transform: translate(-27.5%, -30%); /* Move 25% right and 25% up */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0px;
+  position: absolute; /* Changed from 'center' to 'absolute' for precise positioning */
+  width: 150px;
+  height: 100px;
+}
+
+.nounDepositButton:hover {
+  background-color: rgba(111, 101, 101, 0.4);
+}
+
+.buttonText {
+  color: #d6c3be;
+  font-family: 'Londrina Solid', sans-serif;
+  font-size: 24px;
+  font-weight: regular;
+  text-align: center;
+  z-index: 1;
+}
+
+.nounDepositButton:hover .buttonText {
+  color: #f3322c;
+}
+
+.nounSvg {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.depositContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.safeIcon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.nounDepositButton span {
+  text-align: center;
 }
 
 .nounSvg {
@@ -39,6 +80,7 @@
 
 .nounPopup {
   margin: 0 auto;
+  margin-bottom: 2rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
