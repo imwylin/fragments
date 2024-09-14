@@ -20,18 +20,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translate(-27.5%, -30%); /* Move 25% right and 25% up */
+  transform: translate(-25%, -30%); /* Move 25% right and 25% up */
   background: none;
   border: none;
   cursor: pointer;
   padding: 0px;
-  position: absolute; /* Changed from 'center' to 'absolute' for precise positioning */
-  width: 150px;
+  position: absolute;
+  width: 160px;
   height: 100px;
 }
 
 .nounDepositButton:hover {
   background-color: rgba(111, 101, 101, 0.4);
+  border-radius: 8px;
 }
 
 .buttonText {
