@@ -75,10 +75,10 @@ const TreasuryBalance = () => {
   const calculateTotalUSD = (balances: any[]) => {
     return balances.reduce((sum, token) => {
       if (token.isLoading || token.isError) return sum;
-      
+
       const balance = parseFloat(token.balance?.formatted || '0');
       const price = tokenPrices[token.symbol] || 0;
-      
+
       return sum + balance * price;
     }, 0);
   };

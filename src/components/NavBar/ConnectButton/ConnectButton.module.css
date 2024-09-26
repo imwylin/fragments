@@ -14,9 +14,6 @@
   cursor: pointer;
   border-radius: 8px;
   transition: all 0.3s ease;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .connectButton:hover, .accountButton:hover, .chainButton:hover {
@@ -27,6 +24,20 @@
 .connectedButtons {
   display: flex;
   gap: 10px;
+}
+
+.buttonContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.walletIcon {
+  margin-bottom: .2rem;
+}
+
+.buttonText {
+  text-align: center;
 }
 
 /* Responsive design */

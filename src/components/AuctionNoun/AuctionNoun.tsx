@@ -347,7 +347,6 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
     }
     return null;
   };
-  
 
   return (
     <div

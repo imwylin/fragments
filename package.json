@@ -12,6 +12,7 @@
   "dependencies": {
     "@apollo/client": "^3.11.8",
     "@ensdomains/react-ens-address": "^0.0.31",
+    "@moralisweb3/common-evm-utils": "^2.27.2",
     "@nouns/assets": "^0.8.0",
     "@nouns/contracts": "^0.3.0",
     "@nouns/sdk": "^0.4.0",
@@ -22,6 +23,7 @@
     "fonts.css": "link:@uniswap/widgets/fonts.css",
     "graphql": "^16.9.0",
     "i18next": "^23.14.0",
+    "moralis": "^2.27.2",
     "next": "^14.2.3",
     "next-transpile-modules": "^10.0.1",
     "react": "^18.3.0",

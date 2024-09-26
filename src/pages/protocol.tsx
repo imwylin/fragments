@@ -10,7 +10,7 @@ const ProtocolPage: React.FC = () => {
     <div className={styles.pageWrapper}>
       <Navbar />
       <main>
-      <NounDeposit />
+        <NounDeposit />
         <div className={styles.infographicContainer}>
           <Infographic />
         </div>

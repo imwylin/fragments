@@ -68,7 +68,7 @@ const AuctionButton = () => {
       const result = await settleAuction({
         address: AUCTION_HOUSE_ADDRESS,
         abi: NounsAuctionHouseABI,
-        functionName: 'settleAuction',
+        functionName: 'settleCurrentAndCreateNewAuction',
       });
       console.log('Auction settled successfully', result);
     } catch (error) {

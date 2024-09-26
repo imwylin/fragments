@@ -42,7 +42,15 @@ const ConnectButton = () => {
                 type="button"
                 className={styles.connectButton}
               >
-                Connect Wallet
+                <div className={styles.buttonContent}>
+                  <img
+                    src="/wallet.svg"
+                    alt="Wallet"
+                    width={88}
+                    height={44}
+                    className={styles.walletIcon}
+                  />
+                </div>
               </button>
             ) : (
               <div className={styles.connectedButtons}>
@@ -58,7 +66,11 @@ const ConnectButton = () => {
                   type="button"
                   className={styles.accountButton}
                 >
-                  {formattedBalance} {account?.displayName || ''}
+                  <div className={styles.buttonContent}>
+                    <span className={styles.buttonText}>
+                      {formattedBalance} {account?.displayName || ''}
+                    </span>
+                  </div>
                 </button>
               </div>
             )}
