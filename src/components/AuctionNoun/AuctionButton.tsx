@@ -94,7 +94,7 @@ const AuctionButton = () => {
             placeholder="0.000000000000069420Ξ"
             className={classes.input}
           />
-          <button type="submit" className={classes.button}>
+          <button type="submit" className={classes.settleButton}>
             Bid
           </button>
         </form>

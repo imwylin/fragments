@@ -40,6 +40,21 @@
     font-size: 16px;
   }
 
+  .settleButton {
+    font-family: 'Londrina Solid', sans-serif;
+    background-color: #e1d7d5;
+    color: #343235;
+    border: none;
+    padding: 10px 32px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+  .settleButton:hover {
+    background-color: #d5d7e1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
   @media (max-width: 768px) {
     .container {
