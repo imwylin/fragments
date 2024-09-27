@@ -57,7 +57,12 @@ const Navbar = () => {
                   rel="noopener noreferrer"
                   className={styles.playNounsLink}
                 >
-                  Explore 🌐
+                  <span className={styles.exploreText}>Explore</span>
+                  <img
+                    src="/nounsworld.gif"
+                    alt="Nouns World"
+                    className={styles.nounsWorldIcon}
+                  />
                 </Link>
                 <div className={styles.playSubMenu}>
                   <div
@@ -119,7 +124,12 @@ const Navbar = () => {
           rel="noopener noreferrer"
           className={styles.playNounsLink}
         >
-          Explore 🌐
+          <span className={styles.exploreText}>Explore</span>
+          <img
+            src="/nounsworld.gif"
+            alt="Nouns World"
+            className={styles.nounsWorldIcon}
+          />
         </Link>
         <div
           className={styles.playMenuContainer}

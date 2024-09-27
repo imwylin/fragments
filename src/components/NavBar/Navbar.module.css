@@ -77,6 +77,16 @@
   transition: color 0.2s ease-in-out;
 }
 
+.exploreText {
+  margin-right: 8px;
+}
+
+.nounsWorldIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}
+
 .playNounsLink:hover {
   color: #2b83f6;
   text-decoration: underline;
