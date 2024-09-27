@@ -82,7 +82,7 @@ const AuctionButton = () => {
   return (
     <div className={classes.container}>
       {isAuctionOver ? (
-        <button className={classes.button} onClick={handleSettleAuction}>
+        <button className={classes.settleButton} onClick={handleSettleAuction}>
           Settle Auction
         </button>
       ) : (
@@ -94,7 +94,7 @@ const AuctionButton = () => {
             placeholder="0.000000000000069420Ξ"
             className={classes.input}
           />
-          <button type="submit" className={classes.settleButton}>
+          <button type="submit" className={classes.button}>
             Bid
           </button>
         </form>
