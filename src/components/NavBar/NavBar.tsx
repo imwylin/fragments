@@ -117,7 +117,6 @@ const Navbar = () => {
         </div>
       </div>
       <div className={styles.desktopLinksSection}>
-        <Link href="/protocol">Protocol 🪙</Link>
         <Link
           href="https://nouns.world/"
           target="_blank"

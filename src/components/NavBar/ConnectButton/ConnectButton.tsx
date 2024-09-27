@@ -10,7 +10,6 @@ const ConnectButton = () => {
         chain,
         openAccountModal,
         openConnectModal,
-        openChainModal,
         authenticationStatus,
         mounted,
       }) => {
@@ -43,36 +42,39 @@ const ConnectButton = () => {
                 className={styles.connectButton}
               >
                 <div className={styles.buttonContent}>
-                  <img
-                    src="/wallet.svg"
-                    alt="Wallet"
-                    width={88}
-                    height={44}
-                    className={styles.walletIcon}
-                  />
+                  <div className={styles.walletIconWrapper}>
+                    <img
+                      src="/wallet.svg"
+                      alt="Wallet"
+                      width={88}
+                      height={44}
+                      className={styles.walletIcon}
+                    />
+                  </div>
                 </div>
               </button>
             ) : (
-              <div className={styles.connectedButtons}>
-                <button
-                  onClick={openChainModal}
-                  type="button"
-                  className={styles.chainButton}
-                >
-                  {chain?.name || 'Unknown'}
-                </button>
-                <button
-                  onClick={openAccountModal}
-                  type="button"
-                  className={styles.accountButton}
-                >
-                  <div className={styles.buttonContent}>
-                    <span className={styles.buttonText}>
-                      {formattedBalance} {account?.displayName || ''}
-                    </span>
-                  </div>
-                </button>
-              </div>
+              <button
+                onClick={openAccountModal}
+                type="button"
+                className={styles.accountButton}
+              >
+                <div className={styles.buttonContent}>
+                  {account?.ensAvatar && (
+                    <img
+                      src={account.ensAvatar}
+                      alt="ENS Avatar"
+                      className={styles.ensAvatar}
+                    />
+                  )}
+                  <span className={styles.buttonText}>
+                    {account?.displayName || ''}
+                  </span>
+                  <span className={`${styles.buttonText} ${styles.balanceText}`}>
+                    {formattedBalance}
+                  </span>
+                </div>
+              </button>
             )}
           </div>
         );
