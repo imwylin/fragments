@@ -50,7 +50,6 @@ const Navbar = () => {
               className={`${styles.menuDropdown} ${styles.mobileMenuDropdown}`}
             >
               <div className={styles.linksSection}>
-                <Link href="/protocol">Protocol 🪙</Link>
                 <Link
                   href="https://nouns.world/"
                   target="_blank"

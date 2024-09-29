@@ -27,8 +27,8 @@
 }
 
 .ensAvatar {
-  width: 36px;
-  height: 36px;
+  width: 2rem;
+  height: 2rem;
   border-radius: 2px;
   margin-right: .5rem;
   vertical-align: middle;
@@ -77,5 +77,13 @@
   .connectedButtons {
     flex-direction: column;
     gap: 5px;
+  }
+
+  .ensAvatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+    margin-right: .5rem;
+    vertical-align: middle;
   }
 }
