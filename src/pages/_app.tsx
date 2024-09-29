@@ -7,7 +7,7 @@ import client from '../../apollo-client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
 import { config } from '../wagmi';
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 
 const queryClient = new QueryClient();
 
@@ -17,7 +17,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ApolloProvider client={client}>
         <WagmiProvider config={config}>
           <QueryClientProvider client={queryClient}>
-            <RainbowKitProvider>
+            <RainbowKitProvider 
+              modalSize="compact"
+              theme={darkTheme({
+                borderRadius: 'small',
+                fontStack: 'system',
+              })}
+            >
               <Component {...pageProps} />
             </RainbowKitProvider>
           </QueryClientProvider>

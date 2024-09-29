@@ -37,8 +37,8 @@ const Home: NextPage = () => {
           </div>
           <div className={styles.iframeContainer}>
             <ResponsiveIframe
-              src="https://nounstown.wtf"
-              title="Nouns Town Website"
+              src="https://www.nouns.game/crystal-ball"
+              title="Crystal Ball"
               height="565px"
             />
           </div>
