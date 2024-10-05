@@ -32,15 +32,15 @@ const Home: NextPage = () => {
           extractedColor={extractedColor}
         />
         <div className={styles.contentRow}>
-          <div className={styles.nounsXContainer}>
-            <NounsX height={565} theme="dark" />
-          </div>
-          <div className={styles.iframeContainer}>
+        <div className={styles.iframeContainer}>
             <ResponsiveIframe
               src="https://www.nouns.game/crystal-ball"
               title="Crystal Ball"
               height="565px"
             />
+          </div>
+          <div className={styles.nounsXContainer}>
+            <NounsX height={565} theme="dark" />
           </div>
         </div>
         <div className={styles.japaneseNogglesContainer}>
