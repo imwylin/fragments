@@ -22,23 +22,46 @@ const AuctionButton = () => {
   const {
     data: auctionData,
     isError,
-    isLoading,
+    isPending,
+    isFetching,
+    refetch
   } = useReadContract({
     address: AUCTION_HOUSE_ADDRESS,
     abi: NounsAuctionHouseABI,
     functionName: 'auction',
-  }) as { data: AuctionData | undefined; isError: boolean; isLoading: boolean };
+  }) as { 
+    data: AuctionData | undefined; 
+    isError: boolean; 
+    isPending: boolean;
+    isFetching: boolean;
+    refetch: () => Promise<any>;
+  };
 
   useEffect(() => {
-    if (auctionData && !isLoading && !isError) {
+    if (!auctionData || isPending || isFetching) return;
+
+    const checkAuctionStatus = async () => {
       const currentTime = Math.floor(Date.now() / 1000);
       const auctionEndTime = Number(auctionData.endTime);
+      const timeRemaining = auctionEndTime - currentTime;
 
-      const isAuctionOver = currentTime > auctionEndTime;
+      // If less than 5 minutes remaining or auction is over, refetch data
+      if (timeRemaining <= 300 || timeRemaining <= 0) {
+        refetch();
+      }
 
-      setIsAuctionOver(isAuctionOver);
-    }
-  }, [auctionData, isLoading, isError]);
+      setIsAuctionOver(currentTime > auctionEndTime);
+    };
+
+    // Check immediately
+    checkAuctionStatus();
+
+    // Set up an interval to check every 5 seconds
+    const intervalId = setInterval(checkAuctionStatus, 5000);
+
+    // Clean up the interval when the component unmounts or auctionData changes
+    return () => clearInterval(intervalId);
+  }, [auctionData, isPending, isFetching, refetch]);
 
   const { writeContract: bidOnAuction } = useWriteContract();
   const { writeContract: settleAuction } = useWriteContract();
@@ -76,7 +99,6 @@ const AuctionButton = () => {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching auction data</div>;
 
   return (
