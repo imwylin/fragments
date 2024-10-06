@@ -417,48 +417,54 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
           {renderAuctionInfo()}
           <AuctionButton />
         </div>
-      </div>
-      <div className={classes.mobileControls}>
-        <div className={classes.buttonContainer}>
-          <button
-            onClick={handlePrevious}
-            className={classes.navButton}
-            disabled={nounId === BigInt(0)}
-          >
-            &lt;
-          </button>
-          <button
-            onClick={handleNext}
-            className={classes.navButton}
-            disabled={nounId >= auctionNounId}
-          >
-            &gt;
-          </button>
-          <button
-            onClick={handleReset}
-            className={classes.navButton}
-            disabled={isAuctionNoun}
-          >
-            Return to Auction
-          </button>
+        <div className={classes.mobileControlsAndInfo}>
+          <div className={classes.mobileControls}>
+            <div className={classes.buttonContainer}>
+              <button
+                onClick={handlePrevious}
+                className={classes.navButton}
+                disabled={nounId === BigInt(0)}
+              >
+                &lt;
+              </button>
+              <button
+                onClick={handleNext}
+                className={classes.navButton}
+                disabled={nounId >= auctionNounId}
+              >
+                &gt;
+              </button>
+              <button
+                onClick={handleReset}
+                className={classes.navButton}
+                disabled={isAuctionNoun}
+              >
+                Return to Auction
+              </button>
+            </div>
+            <form onSubmit={handleSearchSubmit} className={classes.searchForm}>
+              <input
+                type="text"
+                placeholder="Enter Noun ID"
+                value={searchNounId}
+                onChange={handleSearchChange}
+                className={classes.searchInput}
+              />
+              <button type="submit" className={classes.searchButton}>
+                Search
+              </button>
+            </form>
+            <ProbeNounsLink />
+          </div>
+          <div className={classes.mobileAuctionInfoSection}>
+            {renderAuctionInfo()}
+            <AuctionButton />
+          </div>
         </div>
-        <form onSubmit={handleSearchSubmit} className={classes.searchForm}>
-          <input
-            type="text"
-            placeholder="Enter Noun ID"
-            value={searchNounId}
-            onChange={handleSearchChange}
-            className={classes.searchInput}
-          />
-          <button type="submit" className={classes.searchButton}>
-            Search
-          </button>
-        </form>
-        <ProbeNounsLink />
       </div>
       {error && <div className={classes.error}>{error}</div>}
     </div>
   );
-};
+}
 
 export default AuctionNoun;

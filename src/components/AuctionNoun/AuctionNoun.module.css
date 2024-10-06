@@ -181,7 +181,7 @@ max-width: 100%;
     gap: 1rem;
 }
   
-.mobileControls {
+.mobileControlsAndInfo {
   display: none;
 }
 
@@ -190,8 +190,7 @@ max-width: 100%;
     padding: 16px;
   }
 
- .nounContent {
-    display: flex;
+  .nounContent {
     flex-direction: column;
     gap: 0rem;
   }
@@ -201,23 +200,16 @@ max-width: 100%;
     margin-bottom: 0rem;
   }
 
-  .auctionInfoSection {
-    flex-direction: column;
-    margin: 0 auto;
-    max-width: 100%;
-    padding-top: 0rem;
-  }
-
-  .buttonContainer {
-    display: none;
-  }
-
-  .searchForm {
-    display: none;
-  }
-
   .desktopControls {
     display: none;
+  }
+
+  .auctionInfoSection {
+    display: none;
+  }
+
+  .mobileControlsAndInfo {
+    display: block;
   }
 
   .mobileControls {
@@ -262,5 +254,13 @@ max-width: 100%;
     padding: 10px 15px;
     height: 45px;
     margin-left: 5rem;
+  }
+
+  .mobileAuctionInfoSection {
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 100%;
+    padding-top: 0rem;
+    font-size: 20px;
   }
 }
