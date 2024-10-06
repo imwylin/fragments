@@ -413,7 +413,7 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
             <ProbeNounsLink />
           </div>
         </div>
-        <div className={classes.auctionInfoSection}>
+        <div className={classes.desktopAuctionInfoSection}>
           {renderAuctionInfo()}
           <AuctionButton />
         </div>
