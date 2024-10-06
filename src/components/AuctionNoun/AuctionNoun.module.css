@@ -159,20 +159,20 @@
 }
 
 .auctionInfo {
-background-color: #f0f0f0;
-color: #343235;
-margin-top: 45px;
-padding: 20px;
-border-radius: 8px;
-word-break: break-word;
-overflow-wrap: break-word;
+  background-color: #f0f0f0;
+  color: #343235;
+  margin-top: 45px;
+  padding: 20px;
+  border-radius: 8px;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .bidderAddress {
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .desktopControls {
@@ -188,79 +188,93 @@ max-width: 100%;
 @media (max-width: 768px) {
   .auctionNounWrapper {
     padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .nounContent {
     flex-direction: column;
-    gap: 0rem;
+    width: 100%;
   }
 
   .nounImageSection {
-    flex-basis: 100%;
-    margin-bottom: 0rem;
-  }
-
-  .desktopControls {
-    display: none;
-  }
-
-  .auctionInfoSection {
-    display: none;
+    width: 100%;
+    margin-bottom: 1rem;
   }
 
   .mobileControlsAndInfo {
-    display: block;
+    width: 100%;
   }
 
-  .mobileControls {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 0rem;
-    padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+  .mobileControlsAndInfo {
+    width: 100%;
+    position: relative;
   }
 
   .mobileControls .buttonContainer {
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
   }
 
   .mobileControls .navButton {
-    font-size: 1rem;
-    padding: 12px 20px;
-    min-width: 60px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 10px 15px;
+    min-width: auto;
+    flex-grow: 1;
+    margin: 0 5px;
   }
 
   .mobileControls .searchForm {
-    display: flex;
-  }
-
-  .mobileControls .searchButton {
-    font-size: 1rem;
-    padding: 10px 20px;
-    height: 45px;
-    margin-right: 5rem;
+    flex-direction: row;
+    width: 100%;
   }
 
   .mobileControls .searchInput {
     flex-grow: 1;
-    font-size: 1rem;
-    padding: 10px 15px;
-    height: 45px;
-    margin-left: 5rem;
+    margin: 0;
+    width: 70%;
+  }
+
+  .mobileControls .searchButton {
+    margin: 0;
+    width: 30%;
   }
 
   .mobileAuctionInfoSection {
+    width: 100%;
+    display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .mobileAuctionInfoSection {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .auctionInfo {
+    background-color: #f0f0f0;
+    color: #343235;
+    margin-top: 1rem;
+    padding: 20px;
+    border-radius: 8px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+  }
+
+  .bidderAddress {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     max-width: 100%;
-    padding-top: 0rem;
-    font-size: 20px;
   }
 }
