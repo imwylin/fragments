@@ -18,6 +18,7 @@ interface AuctionData {
 const AuctionButton = () => {
   const [bidAmount, setBidAmount] = useState('');
   const [isAuctionOver, setIsAuctionOver] = useState(false);
+  const [lastValidAuctionData, setLastValidAuctionData] = useState<AuctionData | null>(null);
 
   const {
     data: auctionData,
@@ -38,14 +39,19 @@ const AuctionButton = () => {
   };
 
   useEffect(() => {
-    if (!auctionData || isPending || isFetching) return;
+    if (auctionData && !isPending && !isFetching) {
+      setLastValidAuctionData(auctionData);
+    }
+  }, [auctionData, isPending, isFetching]);
+
+  useEffect(() => {
+    if (!lastValidAuctionData || isPending || isFetching) return;
 
     const checkAuctionStatus = async () => {
       const currentTime = Math.floor(Date.now() / 1000);
-      const auctionEndTime = Number(auctionData.endTime);
+      const auctionEndTime = Number(lastValidAuctionData.endTime);
       const timeRemaining = auctionEndTime - currentTime;
 
-      // If less than 5 minutes remaining or auction is over, refetch data
       if (timeRemaining <= 300 || timeRemaining <= 0) {
         refetch();
       }
@@ -53,28 +59,25 @@ const AuctionButton = () => {
       setIsAuctionOver(currentTime > auctionEndTime);
     };
 
-    // Check immediately
     checkAuctionStatus();
 
-    // Set up an interval to check every 5 seconds
-    const intervalId = setInterval(checkAuctionStatus, 5000);
+    const intervalId = setInterval(checkAuctionStatus, 12000);
 
-    // Clean up the interval when the component unmounts or auctionData changes
     return () => clearInterval(intervalId);
-  }, [auctionData, isPending, isFetching, refetch]);
+  }, [lastValidAuctionData, isPending, isFetching, refetch]);
 
   const { writeContract: bidOnAuction } = useWriteContract();
   const { writeContract: settleAuction } = useWriteContract();
 
   const handleBidSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!bidOnAuction || !auctionData) return;
+    if (!bidOnAuction || !lastValidAuctionData) return;
     try {
       const result = await bidOnAuction({
         address: AUCTION_HOUSE_ADDRESS,
         abi: NounsAuctionHouseABI,
         functionName: 'createBid',
-        args: [auctionData.nounId, 11],
+        args: [lastValidAuctionData.nounId, 11],
         value: parseEther(bidAmount),
       });
       console.log('Bid submitted successfully', result);
@@ -99,27 +102,29 @@ const AuctionButton = () => {
     }
   };
 
-  if (isError) return <div>Error fetching auction data</div>;
-
   return (
     <div className={classes.container}>
-      {isAuctionOver ? (
-        <button className={classes.settleButton} onClick={handleSettleAuction}>
-          Settle Auction
-        </button>
-      ) : (
-        <form onSubmit={handleBidSubmit} className={classes.form}>
-          <input
-            type="text"
-            value={bidAmount}
-            onChange={(e) => setBidAmount(e.target.value)}
-            placeholder="0.000000000000069420Ξ"
-            className={classes.input}
-          />
-          <button type="submit" className={classes.button}>
-            Bid
+      {lastValidAuctionData ? (
+        isAuctionOver ? (
+          <button className={classes.settleButton} onClick={handleSettleAuction}>
+            Settle Auction
           </button>
-        </form>
+        ) : (
+          <form onSubmit={handleBidSubmit} className={classes.form}>
+            <input
+              type="text"
+              value={bidAmount}
+              onChange={(e) => setBidAmount(e.target.value)}
+              placeholder="0.000000000000069420Ξ"
+              className={classes.input}
+            />
+            <button type="submit" className={classes.button}>
+              Bid
+            </button>
+          </form>
+        )
+      ) : (
+        <div>Loading auction data...</div>
       )}
     </div>
   );
