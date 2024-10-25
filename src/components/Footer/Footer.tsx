@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          fragments
+          Play Nouns
         </a>
         . cc0 no rights reserved
       </p>
