@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         
         {/* Primary Meta Tags */}
-        <title>Your Web3 App Name</title>
+        <title>Play Nouns</title>
         <meta name="title" content="Play Nouns" />
         <meta name="description" content="Have fun playing Nouns" />
         

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import {
   useBlockNumber,
   useReadContract,
@@ -92,20 +92,15 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
 
   const seed = useNounSeed(nounId);
 
-  const updateTimeLeft = () => {
+  const updateTimeLeft = useCallback(() => {
     if (isAuctionNoun && currentAuctionData && 'endTime' in currentAuctionData) {
       const auctionData = currentAuctionData as AuctionData;
       
-      // Update the auction end time if it has changed
-      if (auctionData.endTime !== auctionEndTime) {
-        setAuctionEndTime(auctionData.endTime);
-      }
-
       const timer = setInterval(() => {
         const now = Date.now() / 1000;
-        const endTime = Number(auctionEndTime);
+        const endTime = Number(auctionData.endTime);
         const diff = endTime - now;
-
+  
         if (diff <= 0) {
           setTimeLeft('Auction ended');
           clearInterval(timer);
@@ -116,14 +111,32 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
           setTimeLeft(`${hours}h ${minutes}m ${seconds}s`);
         }
       }, 1000);
-
+  
       return () => clearInterval(timer);
     }
-  };
+  }, [isAuctionNoun, currentAuctionData]);
 
   useEffect(() => {
-    updateTimeLeft();
-  }, [isAuctionNoun, currentAuctionData]);
+    const cleanup = updateTimeLeft();
+    return () => {
+      if (cleanup) cleanup();
+    };
+  }, [updateTimeLeft]);
+
+  useEffect(() => {
+    if (currentAuctionData && 'endTime' in currentAuctionData) {
+      const auctionData = currentAuctionData as AuctionData;
+      const now = Date.now() / 1000;
+      const endTime = Number(auctionData.endTime);
+      const diff = endTime - now;
+  
+      if (diff > 0) {
+        setTimeLeft('Calculating...');
+      } else {
+        setTimeLeft('Auction ended');
+      }
+    }
+  }, [currentAuctionData]);
 
   useEffect(() => {
     console.log('Auction Data:', auctionData);
