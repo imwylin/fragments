@@ -31,14 +31,14 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:url" content="https://playnouns.wtf" />
         <meta property="og:title" content="Play Nouns" />
         <meta property="og:description" content="Have fun playing Nouns" />
-        <meta property="og:image" content="https://yourdapp.com/og-image.png" />
+        <meta property="og:image" content="https://playnouns.wtf/og-image.png" />
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://playnouns.wtf" />
         <meta property="twitter:title" content="Play Nouns" />
         <meta property="twitter:description" content="Have fun playing Nouns" />
-        <meta property="twitter:image" content="https://yourdapp.com/og-image.png" />
+        <meta property="twitter:image" content="https://playnouns.wtf/og-image.png" />
       </Head>
 
       <ApolloProvider client={client}>
