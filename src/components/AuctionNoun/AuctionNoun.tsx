@@ -50,6 +50,7 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
   const [searchNounId, setSearchNounId] = useState<string>('');
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [timeLeft, setTimeLeft] = useState<string>('');
+  const [auctionEndTime, setAuctionEndTime] = useState<bigint>(BigInt(0));
   const [auctionNounId, setAuctionNounId] = useState<bigint>(BigInt(0));
 
   const { data: auctionData } = useReadContracts({
@@ -92,15 +93,17 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
   const seed = useNounSeed(nounId);
 
   const updateTimeLeft = () => {
-    if (
-      isAuctionNoun &&
-      currentAuctionData &&
-      'endTime' in currentAuctionData
-    ) {
+    if (isAuctionNoun && currentAuctionData && 'endTime' in currentAuctionData) {
       const auctionData = currentAuctionData as AuctionData;
+      
+      // Update the auction end time if it has changed
+      if (auctionData.endTime !== auctionEndTime) {
+        setAuctionEndTime(auctionData.endTime);
+      }
+
       const timer = setInterval(() => {
         const now = Date.now() / 1000;
-        const endTime = Number(auctionData.endTime);
+        const endTime = Number(auctionEndTime);
         const diff = endTime - now;
 
         if (diff <= 0) {
