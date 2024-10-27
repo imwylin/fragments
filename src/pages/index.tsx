@@ -34,20 +34,13 @@ const Home: NextPage = () => {
           onNounIdChange={handleNounIdChange}
           extractedColor={extractedColor}
         />
-        <div className={styles.contentRow}>
-        <div className={styles.iframeContainer}>
-            <ResponsiveIframe
-              src="https://www.nouns.game/crystal-ball"
-              title="Crystal Ball"
-              height="565px"
-            />
-          </div>
-          <div className={styles.nounsXContainer}>
-            <NounsX height={565} theme="dark" />
-          </div>
-        </div>
-        <div className={styles.japaneseNogglesContainer}>
-          <JapaneseNoggles />
+        <div className={styles.rulesBanner}>
+          <h1>There are only 5 rules.</h1>
+          <p>Do good with no expectation of return</p>
+          <p>Create positive externalities</p>
+          <p>Embrace absurdity & difference</p>
+          <p>Teach people about Nouns & crypto</p>
+          <p>Have fun</p>
         </div>
       </main>
       <Footer />
