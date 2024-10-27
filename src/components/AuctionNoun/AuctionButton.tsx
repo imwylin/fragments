@@ -61,7 +61,7 @@ const AuctionButton = () => {
 
     checkAuctionStatus();
 
-    const intervalId = setInterval(checkAuctionStatus, 12000);
+    const intervalId = setInterval(checkAuctionStatus, 6000);
 
     return () => clearInterval(intervalId);
   }, [lastValidAuctionData, isPending, isFetching, refetch]);
