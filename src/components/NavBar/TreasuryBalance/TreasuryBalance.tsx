@@ -28,17 +28,38 @@ const TOKENS = [
   },
 ];
 
+interface TokenPrices {
+  [key: string]: number;
+}
+
 const TreasuryBalance = () => {
-  const [isHovering, setIsHovering] = useState(false);
-  const [dropdownWidth, setDropdownWidth] = useState(0);
-  const [tokenPrices, setTokenPrices] = useState<Record<string, number>>({});
-  const buttonRef = useRef<HTMLAnchorElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [tokenPrices, setTokenPrices] = useState<TokenPrices>({});
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (buttonRef.current) {
-      setDropdownWidth(buttonRef.current.offsetWidth);
-    }
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+
+    return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
+
+  const handleInteraction = (isHovering: boolean) => {
+    if (!isMobile) {
+      setIsOpen(isHovering);
+    }
+  };
+
+  const handleClick = () => {
+    if (isMobile) {
+      setIsOpen(!isOpen);
+    }
+  };
 
   useEffect(() => {
     const fetchTokenPrices = async () => {
@@ -96,15 +117,13 @@ const TreasuryBalance = () => {
 
   return (
     <div
+      ref={containerRef}
       className={styles.treasuryContainer}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
+      onMouseEnter={() => handleInteraction(true)}
+      onMouseLeave={() => handleInteraction(false)}
     >
-      <a
-        ref={buttonRef}
-        href={`https://etherscan.io/address/${TREASURY_ADDRESS}`}
-        target="_blank"
-        rel="noopener noreferrer"
+      <button
+        onClick={handleClick}
         className={styles.treasuryButton}
       >
         Treasury:{' '}
@@ -113,12 +132,14 @@ const TreasuryBalance = () => {
           : mainBalance.isError
             ? 'Error'
             : `${formatNumber(mainBalance.balance?.formatted || '0')} Ξ`}
-      </a>
-      {isHovering && (
-        <div
-          className={styles.dropdown}
-          style={{ width: `${dropdownWidth}px` }}
-        >
+      </button>
+      {isOpen && (
+        <div className={styles.dropdown}>
+          {isMobile && (
+            <button onClick={() => setIsOpen(false)} className={styles.closeButton}>
+              &times;
+            </button>
+          )}
           {balances.map((token, index) => (
             <div key={index} className={styles.dropdownItem}>
               {token.symbol}:{' '}

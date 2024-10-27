@@ -1,10 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import {
-  useBlockNumber,
-  useReadContract,
-  useReadContracts,
-  useWatchContractEvent,
-} from 'wagmi';
+import { useBlockNumber, useReadContract, useReadContracts, useWatchContractEvent, } from 'wagmi';
 import { formatEther, Log } from 'viem';
 import { ENSName } from 'react-ens-name';
 import { useNounSeed } from '../../utils/nounToken';
