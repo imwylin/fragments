@@ -53,8 +53,19 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
   const publicClient = usePublicClient();
 
   const displayNounId = isAuctionEnded ? nextNounId : nounId;
-  const { data: blockNumber } = useBlockNumber();
   const seed = useNounSeed(displayNounId);
+
+  const { data: blockNumber } = useBlockNumber({
+    watch: true,
+    query: {
+      refetchInterval: 4000, // Poll every 4 seconds
+    }
+  });
+
+  // Add a debug useEffect to verify block updates
+  useEffect(() => {
+    console.log('Current block number:', blockNumber);
+  }, [blockNumber]);
 
   const { data: auctionData } = useReadContracts({
     contracts: [
@@ -99,11 +110,20 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
         const diff = endTime - now;
   
         if (diff <= 0) {
-          setTimeLeft('Auction ended');
-          setIsAuctionEnded(true);
-          setNextNounId(auctionData.nounId + BigInt(1));
-          clearInterval(timer);
+          if (auctionData.settled) {  // Only clear interval if auction is settled
+            setTimeLeft('Auction ended');
+            setIsAuctionEnded(true);
+            setNextNounId(auctionData.nounId + BigInt(1));
+            clearInterval(timer);
+          } else {
+            // Auction time expired but not settled - keep updating
+            setTimeLeft('Auction ended - ' + now);
+            setIsAuctionEnded(true);
+            setNextNounId(auctionData.nounId + BigInt(1));
+          }
         } else {
+          // Auction still active
+          setIsAuctionEnded(false);  // Reset in case of auction extension
           const hours = Math.floor(diff / 3600);
           const minutes = Math.floor((diff % 3600) / 60);
           const seconds = Math.floor(diff % 60);
@@ -144,13 +164,19 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
     if (seed !== null && seed !== undefined) {
       const loadBuildSVG = async () => {
         try {
+          console.log('Sending request to generateSVG:', { 
+            seed, 
+            isNextNoun: isAuctionEnded,
+            blockNumber: isAuctionEnded && blockNumber ? Number(blockNumber) : undefined
+          });
+
           const response = await fetch('/api/generateSVG', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
               seed, 
               isNextNoun: isAuctionEnded,
-              blockNumber: isAuctionEnded ? blockNumber : undefined
+              blockNumber: isAuctionEnded && blockNumber ? Number(blockNumber) : undefined
             }),
           });
 
