@@ -25,6 +25,9 @@ const Home: NextPage = () => {
   return (
     <div className={styles.pageWrapper}>
       <Navbar />
+      <div className={styles.banner}>
+        <h1>Nouns is a game. Play it your way.</h1>
+      </div>
       <main className={styles.main}>
         <AuctionNoun
           onColorExtracted={handleColorExtracted}

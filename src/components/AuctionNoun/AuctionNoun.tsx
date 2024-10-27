@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { useBlockNumber, useReadContract, useReadContracts, useWatchContractEvent, } from 'wagmi';
+import { useBlockNumber, useReadContract, useReadContracts, useWatchContractEvent, usePublicClient } from 'wagmi';
 import { formatEther, Log } from 'viem';
 import { ENSName } from 'react-ens-name';
 import { useNounSeed } from '../../utils/nounToken';
@@ -47,6 +47,10 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
   const [timeLeft, setTimeLeft] = useState<string>('');
   const [auctionEndTime, setAuctionEndTime] = useState<bigint>(BigInt(0));
   const [auctionNounId, setAuctionNounId] = useState<bigint>(BigInt(0));
+  const [isAuctionEnded, setIsAuctionEnded] = useState<boolean>(false);
+  const [nextNounId, setNextNounId] = useState<bigint>(BigInt(0));
+  
+  const publicClient = usePublicClient();
 
   const { data: auctionData } = useReadContracts({
     contracts: [
@@ -98,6 +102,8 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
   
         if (diff <= 0) {
           setTimeLeft('Auction ended');
+          setIsAuctionEnded(true);
+          setNextNounId(auctionData.nounId + BigInt(1));
           clearInterval(timer);
         } else {
           const hours = Math.floor(diff / 3600);
@@ -110,7 +116,7 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
       return () => clearInterval(timer);
     }
   }, [isAuctionNoun, currentAuctionData]);
-
+  
   useEffect(() => {
     const cleanup = updateTimeLeft();
     return () => {
@@ -127,42 +133,14 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
   
       if (diff > 0) {
         setTimeLeft('Calculating...');
+        setIsAuctionEnded(false);
       } else {
         setTimeLeft('Auction ended');
+        setIsAuctionEnded(true);
+        setNextNounId(auctionData.nounId + BigInt(1));
       }
     }
   }, [currentAuctionData]);
-
-  useEffect(() => {
-    console.log('Auction Data:', auctionData);
-  }, [auctionData]);
-
-  useEffect(() => {
-    if (auctionData && Array.isArray(auctionData) && auctionData[0]) {
-      const result = auctionData[0].result;
-      if (result && typeof result === 'object' && 'nounId' in result) {
-        const fetchedNounId = result.nounId;
-        if (typeof fetchedNounId === 'bigint') {
-          setNounId(fetchedNounId);
-          setAuctionNounId(fetchedNounId);
-          onNounIdChange(fetchedNounId);
-          setIsAuctionNoun(true);
-          setError(null);
-        } else {
-          setError('Invalid NounId received');
-        }
-      } else {
-        setError('No auction data available');
-      }
-    } else if (
-      auctionData &&
-      Array.isArray(auctionData) &&
-      auctionData[0] &&
-      'error' in auctionData[0]
-    ) {
-      setError(auctionData[0].error?.message || 'An unknown error occurred');
-    }
-  }, [auctionData, onNounIdChange]);
 
   useEffect(() => {
     if (seed !== null && seed !== undefined) {
@@ -171,7 +149,7 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
           const response = await fetch('/api/generateSVG', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ seed }),
+            body: JSON.stringify({ seed, isNextNoun: isAuctionEnded }),
           });
 
           if (!response.ok) {
@@ -195,7 +173,7 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
 
       loadBuildSVG();
     }
-  }, [seed, nounId]);
+  }, [seed, nounId, isAuctionEnded]);
 
   useEffect(() => {
     if (svg && canvasRef.current) {
@@ -304,6 +282,16 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
               className={classes.loadingDataGif}
             />
           </div>
+        </div>
+      );
+    }
+
+    if (isAuctionEnded) {
+      return (
+        <div className={classes.auctionInfo}>
+          <h2>Auction Ended</h2>
+          <p>Next Noun: {nextNounId.toString()}</p>
+          <p>Waiting for new auction to start...</p>
         </div>
       );
     }
