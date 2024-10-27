@@ -52,6 +52,8 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
   
   const publicClient = usePublicClient();
 
+  const displayNounId = isAuctionEnded ? nextNounId : nounId;
+
   const { data: auctionData } = useReadContracts({
     contracts: [
       {
@@ -290,8 +292,7 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
       return (
         <div className={classes.auctionInfo}>
           <h2>Auction Ended</h2>
-          <p>Next Noun: {nextNounId.toString()}</p>
-          <p>Waiting for new auction to start...</p>
+          <p>Settle the Noun to start the auction!</p>
         </div>
       );
     }
@@ -354,7 +355,7 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
     >
       <div className={classes.nounContent}>
         <div className={classes.nounImageSection}>
-          <div className={classes.nounId}>Noun {nounId.toString()}</div>
+          <div className={classes.nounId}>Noun {displayNounId.toString()}</div>
           <div className={classes.noun}>
             {!svg ? (
               <div className={classes.loadingContainer}>
@@ -367,7 +368,7 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
             ) : (
               <img
                 src={svg}
-                alt={`Noun ${nounId.toString()}`}
+                alt={`Noun ${displayNounId.toString()}`}
                 className={classes.nounImage}
               />
             )}
