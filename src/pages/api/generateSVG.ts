@@ -10,7 +10,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const { seed } = req.body;
+    const { seed, isNextNoun, blockNumber } = req.body;
 
     // Ensure seed is provided and valid
     if (!seed || typeof seed !== 'object') {
@@ -18,17 +18,31 @@ export default async function handler(
       return res.status(400).json({ error: 'Valid seed object is required' });
     }
 
-    console.log('Received seed:', seed);
+    console.log('Received seed:', seed, 'isNextNoun:', isNextNoun, 'blockNumber:', blockNumber);
+
+    let modifiedSeed = { ...seed };
+
+    if (isNextNoun && blockNumber) {
+      // Use blockNumber to modify the seed when it's the next Noun
+      const blockNumberSeed = BigInt(blockNumber) % BigInt(256); // Assuming each trait has 256 options max
+      modifiedSeed = {
+        background: (seed.background + Number(blockNumberSeed)) % bgcolors.length,
+        body: (seed.body + Number(blockNumberSeed)) % bodies.length,
+        accessory: (seed.accessory + Number(blockNumberSeed)) % accessories.length,
+        head: (seed.head + Number(blockNumberSeed)) % heads.length,
+        glasses: (seed.glasses + Number(blockNumberSeed)) % glasses.length,
+      };
+    }
 
     // Prepare the parts for buildSVG
     const svgParts = [
-      { data: bodies[seed.body].data },
-      { data: accessories[seed.accessory].data },
-      { data: heads[seed.head].data },
-      { data: glasses[seed.glasses].data },
+      { data: bodies[modifiedSeed.body].data },
+      { data: accessories[modifiedSeed.accessory].data },
+      { data: heads[modifiedSeed.head].data },
+      { data: glasses[modifiedSeed.glasses].data },
     ];
 
-    const background = bgcolors[seed.background];
+    const background = bgcolors[modifiedSeed.background];
 
     const svgImage = buildSVG(svgParts, palette, background);
     console.log('SVG generated successfully');

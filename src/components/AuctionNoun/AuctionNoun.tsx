@@ -53,6 +53,8 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
   const publicClient = usePublicClient();
 
   const displayNounId = isAuctionEnded ? nextNounId : nounId;
+  const { data: blockNumber } = useBlockNumber();
+  const seed = useNounSeed(displayNounId);
 
   const { data: auctionData } = useReadContracts({
     contracts: [
@@ -64,11 +66,8 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
     ],
   });
 
-  const { data: blockNumber } = useBlockNumber();
-
   const {
     data: currentAuctionData,
-    error: currentAuctionError,
     isLoading: isCurrentAuctionLoading,
   } = useReadContract({
     address: AUCTION_HOUSE_ADDRESS,
@@ -82,7 +81,6 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
 
   const {
     data: pastAuctionData,
-    error: pastAuctionError,
     isLoading: isPastAuctionLoading,
   } = useReadContract({
     abi: NounsAuctionHouseABI,
@@ -90,8 +88,6 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
     functionName: 'getSettlements',
     args: nounId ? [nounId, nounId + BigInt(1), false] : undefined,
   });
-
-  const seed = useNounSeed(nounId);
 
   const updateTimeLeft = useCallback(() => {
     if (isAuctionNoun && currentAuctionData && 'endTime' in currentAuctionData) {
@@ -151,7 +147,11 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
           const response = await fetch('/api/generateSVG', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ seed, isNextNoun: isAuctionEnded }),
+            body: JSON.stringify({ 
+              seed, 
+              isNextNoun: isAuctionEnded,
+              blockNumber: isAuctionEnded ? blockNumber : undefined
+            }),
           });
 
           if (!response.ok) {
@@ -175,7 +175,7 @@ const AuctionNoun: React.FC<AuctionNounProps> = ({
 
       loadBuildSVG();
     }
-  }, [seed, nounId, isAuctionEnded]);
+  }, [seed, nounId, isAuctionEnded, blockNumber]);
 
   useEffect(() => {
     if (svg && canvasRef.current) {
